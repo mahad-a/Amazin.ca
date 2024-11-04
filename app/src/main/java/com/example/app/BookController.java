@@ -26,12 +26,6 @@ public class BookController {
     }
     
 
-    @GetMapping("/")
-    public String home(Model model){
-        model.addAttribute("message", "Welcome to Amazin.com!");
-        return "index";
-    }
-
     @GetMapping("/get")
     public ResponseEntity<Optional<Book>> getMethodName(@RequestParam Long id) {
         Optional<Book> retreivedBooks = bookInventory.findById(id);
