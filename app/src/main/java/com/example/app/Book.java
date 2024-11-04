@@ -8,15 +8,17 @@ public class Book {
 
     int ISBN;
     String title;
-    String authour;
+    String author;
+    String coverURL;
 
     @Id
     Long id;
     
-    Book(int ISBN, String title, String authour){
+    Book(int ISBN, String title, String author, String coverURL){
         this.ISBN = ISBN;
         this.title = title;
-        this.authour = authour;
+        this.author = author;
+        this.coverURL = coverURL;
     }
 
     public void setId(Long id){
@@ -42,12 +44,20 @@ public class Book {
         return this.title;
     }
 
-    public void setAuthour(String authour){
-        this.authour = authour;
+    public void setAuthour(String author){
+        this.author = author;
     }
 
     public String getAuthour(){
-        return this.authour;
+        return this.author;
+    }
+
+    public void setCover(String coverURL){
+        this.coverURL = coverURL;
+    }
+
+    public String getCover(){
+        return this.coverURL;
     }
     
 }

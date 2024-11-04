@@ -32,8 +32,8 @@ public class BookController {
     }
 
     @PostMapping("/put")
-    public ResponseEntity<String> addBook(@RequestBody int ISBN, String title, String authour) {
-        Book book = new Book(ISBN, title, authour);
+    public ResponseEntity<String> addBook(@RequestBody int ISBN, String title, String authour, String coverURL) {
+        Book book = new Book(ISBN, title, authour, coverURL);
         bookInventory.save(book);
         
         return ResponseEntity.ok("Book successfully added.");

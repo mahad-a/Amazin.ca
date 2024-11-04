@@ -57,13 +57,47 @@ body{
     background-color: goldenrod;
 }
 
-
-
-#cart{
+#admin a:visited{
     font-family: 'Arial Black', Arial, sans-serif;
     color: aliceblue ;
+    text-decoration: none;
+}
+#admin a{
+    font-family: 'Arial Black', Arial, sans-serif;
+    color: aliceblue ;
+    text-decoration: none;
+
+}
+#admin a:hover{
+    font-family: 'Arial Black', Arial, sans-serif;
+    color: goldenrod ;
+    text-decoration: none;
+}
+
+#cart{
     padding-right: 10px;
 }
+#cart a:visited{
+    font-family: 'Arial Black', Arial, sans-serif;
+    color: aliceblue ;
+    text-decoration: none;
+    
+}
+
+#cart a{
+    font-family: 'Arial Black', Arial, sans-serif;
+    color: aliceblue ;
+    text-decoration: none;
+}
+
+#cart a:hover{
+    font-family: 'Arial Black', Arial, sans-serif;
+    color: goldenrod ;
+    text-decoration: none;
+    
+}
+
+
 
 
 
