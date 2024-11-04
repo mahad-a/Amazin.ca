@@ -13,6 +13,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: List Directory Contents for Debugging
+      run: ls -R
+      # Lists all files and folders to confirm the exact path to `pom.xml`
+
     - name: Set up JDK 21
       uses: actions/setup-java@v4
       with:
@@ -21,8 +25,8 @@ jobs:
         cache: maven
 
     - name: Build with Maven
+      # Adjust the path here based on the output of `ls -R`
       run: mvn -B package -f SYSC4806_Project/app/pom.xml
 
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
