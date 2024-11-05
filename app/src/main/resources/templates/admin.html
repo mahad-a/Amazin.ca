@@ -7,14 +7,25 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="adminstylesheet.css">
     </head>
     <body>
-        <h2>admin</h2>
-        <div id="display">
+
+        <div id = "header">
+            <div id="titleContainer">
+                <img src="/AmazinLogo.png" id="amazinLogo" alt="Amazin Logo">
+            </div>
+            <div id = "searchContainer">
+                <form id = "searchForm">
+                    <label for="search">.</label>
+                    <input type="text" id = "search" placeholder = "search..." required>
+                    <button type = "submit" id = "searchButton">Search</button>
+                </form>
+            </div>
+            <h2 id = "addBook"><a href = "/book/adminAddBookPage">+</a></h2>
+            <h2 id = "home"><a href = "/">home</a><h2>
         </div>
-        <h1><a href = "/book/addBook">addBook</a></h1>
-        <h1>removeBook<h1>
+        
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
