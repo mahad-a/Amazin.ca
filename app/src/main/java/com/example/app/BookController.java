@@ -4,17 +4,19 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("book")
 public class BookController {
 
     @Autowired
@@ -23,6 +25,12 @@ public class BookController {
     BookController(){
 
     }
+
+    @GetMapping("/adminAddBookPage")
+    public String addBookHTML() {
+        return "adminAddBookPage";
+    }
+    
     
 
     @GetMapping("/get")
@@ -31,12 +39,17 @@ public class BookController {
         return ResponseEntity.ok(retreivedBooks);
     }
 
-    @PostMapping("/put")
-    public ResponseEntity<String> addBook(@RequestBody int ISBN, String title, String authour, String coverURL) {
-        Book book = new Book(ISBN, title, authour, coverURL);
-        bookInventory.save(book);
-        
-        return ResponseEntity.ok("Book successfully added.");
+    @PostMapping(value = "/add", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    public ResponseEntity<Book> addBook(@RequestParam("title") String title,
+                        @RequestParam("author") String author,
+                        @RequestParam("image") MultipartFile image) throws Exception {
+
+        Book book = new Book();
+        book.setTitle(title);
+        book.setAuthour(author);
+        book.setCover(image.getBytes());  
+        Book savedBook = bookInventory.save(book);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
     }
 
     @DeleteMapping("/del")
