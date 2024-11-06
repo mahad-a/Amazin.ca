@@ -8,17 +8,21 @@ public class Book {
 
     int ISBN;
     String title;
-    String author;
-    String coverURL;
+    String authour;
+    byte [] coverURL;
 
     @Id
     Long id;
     
-    Book(int ISBN, String title, String author, String coverURL){
+    Book(int ISBN, String title, String authour, byte [] coverURL){
         this.ISBN = ISBN;
         this.title = title;
-        this.author = author;
+        this.authour = authour;
         this.coverURL = coverURL;
+    }
+
+    Book(){
+        
     }
 
     public void setId(Long id){
@@ -45,18 +49,18 @@ public class Book {
     }
 
     public void setAuthour(String author){
-        this.author = author;
+        this.authour = author;
     }
 
     public String getAuthour(){
-        return this.author;
+        return this.authour;
     }
 
-    public void setCover(String coverURL){
+    public void setCover(byte [] coverURL){
         this.coverURL = coverURL;
     }
 
-    public String getCover(){
+    public byte [] getCover(){
         return this.coverURL;
     }
     

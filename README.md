@@ -1,3 +1,8 @@
-# SYSC4806_Project
+# BookStore :: <span style = "color:gold"> Amazin </span>
 
-![alt text](app/src/main/resources/static/image.png)
+## UML (needs update)
+![Alt text](docs/image.png)
+## Entity Relational Diagram
+![Alt text](/docs/BookStoreER.png)
+## Entity Relational Map Diagram
+![Alt text](docs/BookStoreER-MAP.png)
