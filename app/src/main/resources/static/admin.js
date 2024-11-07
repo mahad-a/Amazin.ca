@@ -7,10 +7,8 @@ $(document).ready(function() {
             $("#bookList").empty();
 
             response.forEach(function(book) {
-                // Check if coverImage is valid, otherwise use default image
                 const coverImage = book.coverImage && book.coverImage.trim() ? `data:image/jpeg;base64,${book.coverImage}` : '/images/default-cover.jpg';
 
-                // Create the HTML for each book item
                 const bookItem = `
                     <li class="book-item">
                         <div class="image-container">
@@ -23,6 +21,7 @@ $(document).ready(function() {
                             <strong>Title:</strong> ${book.title} <br>
                             <strong>Author:</strong> ${book.authour}
                         </div>
+
                     </li>`;
 
                 // Append each book item to the list

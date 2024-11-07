@@ -22,4 +22,21 @@ $(document).ready(function(){
             }
         });
     });
+
+    window.deleteBook = function(bookId) {
+        if (confirm('Are you sure you want to delete this book?')) {
+            $.ajax({
+                url: `/book/del?id=${bookId}`,
+                type: 'DELETE',
+                success: function(response) {
+                    alert('Book deleted successfully');
+                    loadBooks(); // Reload the book list
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error deleting book:", error);
+                    alert('Error deleting book: ' + error);
+                }
+            });
+        }
+    };
 });
