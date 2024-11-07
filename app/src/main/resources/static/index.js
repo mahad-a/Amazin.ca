@@ -4,13 +4,16 @@ $(document).ready(function() {
         url: "/book/getAll",
         type: "GET",
         success: function(response) {
+            // Clear the current book list
             $("#bookList").empty();
 
             response.forEach(function(book) {
-                // Check if coverImage is valid, otherwise use default image
-                const coverImage = book.coverImage && book.coverImage.trim() ? `data:image/jpeg;base64,${book.coverImage}` : '/images/default-cover.jpg';
+                // Use base64 image if available; otherwise, use default cover image
+                const coverImage = book.coverImage && book.coverImage.trim()
+                    ? `data:image/jpeg;base64,${book.coverImage}`
+                    : '/images/default-cover.jpg';
 
-                // Create the HTML for each book item
+                // Generate HTML for each book item
                 const bookItem = `
                     <li class="book-item">
                         <div class="image-container">
@@ -30,6 +33,7 @@ $(document).ready(function() {
             });
         },
 
+        // Error handling for AJAX request
         error: function(xhr, status, error) {
             alert("ERROR");
             console.log(error);
