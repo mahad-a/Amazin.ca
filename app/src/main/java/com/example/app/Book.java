@@ -14,14 +14,14 @@ public class Book {
     String authour;
     int ISBNnum;
     @Lob
-    byte [] coverImagePath;
+    byte [] coverImage;
 
     public byte[] getCoverImage() {
-        return this.coverImagePath;
+        return this.coverImage;
     }
 
-    public void setCoverImage(byte[] coverImagePath) {
-        this.coverImagePath = coverImagePath;
+    public void setCoverImage(byte[] coverImage) {
+        this.coverImage = coverImage;
     }
 
     @Id
