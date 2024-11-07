@@ -62,6 +62,7 @@ public class BookController {
         @RequestParam("coverImage") MultipartFile coverImage
     ) {
         try {
+            System.out.println("isbn number added: " + ISBNnum);
             Book book = new Book(ISBNnum, title, authour);
             book.setCoverImage(coverImage.getBytes()); // Save the image data
             Book savedBook = bookInventory.save(book);
