@@ -17,7 +17,7 @@ public class Book {
     Long id;
 
     String title;
-    String authour;
+    String author;
     int ISBNnum;
     @Lob
     byte [] coverImage;
@@ -32,12 +32,12 @@ public class Book {
      *
      * @param ISBNnum the ISBN number of the book
      * @param title the title of the book
-     * @param authour the author of the book
+     * @param author the author of the book
      */
-    public Book(int ISBNnum, String title, String authour){
+    public Book(int ISBNnum, String title, String author){
         this.ISBNnum = ISBNnum;
         this.title = title;
-        this.authour = authour;
+        this.author = author;
     }
 
     /**
@@ -99,17 +99,17 @@ public class Book {
      *
      * @return the author of the book
      */
-    public String getAuthour(){
-        return this.authour;
+    public String getAuthor(){
+        return this.author;
     }
 
     /**
      * Sets the author of the book.
      *
-     * @param authour the author to set
+     * @param author the author to set
      */
-    public void setAuthour(String authour){
-        this.authour = authour;
+    public void setAuthor(String author){
+        this.author = author;
     }
 
     /**
