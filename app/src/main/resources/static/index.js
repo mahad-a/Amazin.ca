@@ -25,6 +25,8 @@ $(document).ready(function(){
                     </li>`;
             $("#bookList").append(bookItem);
 
+            console.log(response);
+
             });
         },
 
