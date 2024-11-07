@@ -7,10 +7,8 @@ $(document).ready(function() {
             $("#bookList").empty();
 
             response.forEach(function(book) {
-                // Check if coverImage is valid, otherwise use default image
                 const coverImage = book.coverImage && book.coverImage.trim() ? `data:image/jpeg;base64,${book.coverImage}` : '/images/default-cover.jpg';
 
-                // Create the HTML for each book item
                 const bookItem = `
                     <li class="book-item">
                         <div class="image-container">
@@ -22,7 +20,10 @@ $(document).ready(function() {
                             <strong>ISBN:</strong> ${book.isbn} <br>
                             <strong>Title:</strong> ${book.title} <br>
                             <strong>Author:</strong> ${book.authour}
+                            <button class="delete-btn" onclick="deleteBook(${book.id})">Delete Book</button>
+
                         </div>
+
                     </li>`;
 
                 // Append each book item to the list
@@ -36,5 +37,22 @@ $(document).ready(function() {
             console.log(status);
         }
     });
+
+    window.deleteBook = function(bookId) {
+        if (confirm('Are you sure you want to delete this book?')) {
+            $.ajax({
+                url: `/book/del?id=${bookId}`,
+                type: 'DELETE',
+                success: function(response) {
+                    alert('Book deleted successfully');
+                    loadBooks(); // Reload the book list
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error deleting book:", error);
+                    alert('Error deleting book: ' + error);
+                }
+            });
+        }
+    };
 
 });
