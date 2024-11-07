@@ -12,9 +12,13 @@ $(document).ready(function(){
                 const bookItem = `
                     <li class="book-item">
                         <div class="image-container">
-                            <img src="${book.coverImage}" 
-                                 alt="Cover of ${book.title}"
-                                 class="book-cover"
+                            // <img src="${book.coverImage}" 
+                            //      alt="Cover of ${book.title}"
+                            //      class="book-cover"
+                            //      onerror="this.src='/images/default-cover.jpg'">
+                            <img src="data:image/jpeg;base64,${book.coverImage}" 
+                                 alt="Cover of ${book.title}" 
+                                 class="book-cover" 
                                  onerror="this.src='/images/default-cover.jpg'">
                         </div>
                         <div class="book-details">
