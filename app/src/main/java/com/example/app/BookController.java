@@ -66,7 +66,7 @@ public class BookController {
             String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;
 
             // Save the file to a directory (you'll need to create this directory)
-            String uploadDir = "uploads/covers/";
+            String uploadDir = "src/main/resources/static/covers/";
             Path uploadPath = Paths.get(uploadDir);
             if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
