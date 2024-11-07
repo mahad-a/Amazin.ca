@@ -1,4 +1,6 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "appService.defaultWebAppToDeploy": "/subscriptions/aa9c00e1-1346-4a20-88b3-0f28e2e8a305/resourceGroups/SYSC_4806/providers/Microsoft.Web/sites/AmazinOnlineBookstore",
+    "appService.deploySubpath": "."
 }
