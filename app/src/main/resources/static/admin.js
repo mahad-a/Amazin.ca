@@ -19,7 +19,7 @@ $(document).ready(function() {
                         <div class="book-details">
                             <strong>ISBN:</strong> ${book.isbn} <br>
                             <strong>Title:</strong> ${book.title} <br>
-                            <strong>Author:</strong> ${book.authour}
+                            <strong>Author:</strong> ${book.author}
                             <button class="delete-btn" onclick="deleteBook(${book.id})">Delete Book</button>
 
                         </div>
