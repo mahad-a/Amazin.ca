@@ -20,7 +20,7 @@ $(document).ready(function() {
                         </div>
                         <div class="book-details">
                             <strong>ISBN:</strong> ${book.isbn} <br>
-                            <strong>Title:</strong> ${book.title} <br>
+                            <strong >Title:</strong> ${book.title} <br>
                             <strong>Author:</strong> ${book.author}
                         </div>
                     </li>`;
