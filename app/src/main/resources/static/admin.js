@@ -20,6 +20,8 @@ $(document).ready(function() {
                             <strong>ISBN:</strong> ${book.isbn} <br>
                             <strong>Title:</strong> ${book.title} <br>
                             <strong>Author:</strong> ${book.authour}
+                            <button class="delete-btn" onclick="deleteBook(${book.id})">Delete Book</button>
+
                         </div>
 
                     </li>`;
@@ -35,5 +37,22 @@ $(document).ready(function() {
             console.log(status);
         }
     });
+
+    window.deleteBook = function(bookId) {
+        if (confirm('Are you sure you want to delete this book?')) {
+            $.ajax({
+                url: `/book/del?id=${bookId}`,
+                type: 'DELETE',
+                success: function(response) {
+                    alert('Book deleted successfully');
+                    loadBooks(); // Reload the book list
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error deleting book:", error);
+                    alert('Error deleting book: ' + error);
+                }
+            });
+        }
+    };
 
 });
