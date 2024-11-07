@@ -79,6 +79,7 @@ public class BookController {
             Book book = new Book(ISBNnum, title, authour);
             book.setCoverImage(coverImage.getBytes()); // Save the image data
             Book savedBook = bookInventory.save(book);
+            System.out.println("Cover image size: " + coverImage.getSize() + " bytes");
             return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
