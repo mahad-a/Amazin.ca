@@ -1,0 +1,38 @@
+body{
+    margin:0;
+}
+
+#header{
+    background-color:gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#home a:visited{
+    font-family: 'Arial Black', Arial, sans-serif;
+    color: aliceblue;
+    text-decoration: none;
+}
+
+#home a{
+    font-family: 'Arial Black', Arial, sans-serif;
+    color: aliceblue;
+    text-decoration: none;
+}
+
+#home a:hover{
+    font-family: 'Arial Black', Arial, sans-serif;
+    color:darkgray;
+    text-decoration: none;
+}
+
+
+#subheaderbar{
+    background-color:slategray;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+}
