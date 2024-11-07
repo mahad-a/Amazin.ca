@@ -18,7 +18,7 @@ $(document).ready(function(){
                                  onerror="this.src='/images/default-cover.jpg'">
                         </div>
                         <div class="book-details">
-                            <strong>ISBN:</strong> ${book.ISBN} <br>
+                            <strong>ISBN:</strong> ${book.ISBNnum} <br>
                             <strong>Title:</strong> ${book.title} <br>
                             <strong>Author:</strong> ${book.authour}
                         </div>

@@ -56,13 +56,13 @@ public class BookController {
 
     @PostMapping("/add")
     public ResponseEntity<Book> addBook(
-        @RequestParam int ISBN,
+        @RequestParam int ISBNnum,
         @RequestParam String title,
         @RequestParam String authour,
         @RequestParam("coverImage") MultipartFile coverImage
     ) {
         try {
-            Book book = new Book(ISBN, title, authour);
+            Book book = new Book(ISBNnum, title, authour);
             book.setCoverImage(coverImage.getBytes()); // Save the image data
             Book savedBook = bookInventory.save(book);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);

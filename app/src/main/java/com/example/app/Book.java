@@ -12,7 +12,7 @@ public class Book {
   
     String title;
     String authour;
-    int ISBN;
+    int ISBNnum;
     @Lob
     byte [] coverImagePath;
 
@@ -36,8 +36,8 @@ public class Book {
         this.id = id;
     }
     
-    Book(int ISBN, String title, String authour){
-        this.ISBN = ISBN;
+    Book(int ISBNnum, String title, String authour){
+        this.ISBNnum = ISBNnum;
         this.title = title;
         this.authour = authour;
       
@@ -47,12 +47,12 @@ public class Book {
         
     }
 
-    public void setISBN(int ISBN){
-        this.ISBN = ISBN;
+    public void setISBN(int ISBNnum){
+        this.ISBNnum = ISBNnum;
 
     }
     public int getISBN(){
-        return this.ISBN;
+        return this.ISBNnum;
     }
 
     public void setTitle(String title){
