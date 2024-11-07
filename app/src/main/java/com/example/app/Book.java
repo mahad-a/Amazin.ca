@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 
 @Entity
 public class Book {
@@ -12,9 +11,15 @@ public class Book {
   
     String title;
     String authour;
+    String coverImagePath;
 
-    // @Lob
-    // byte [] coverURL;
+    public String getCoverImagePath() {
+        return this.coverImagePath;
+    }
+
+    public void setCoverImagePath(String coverImagePath) {
+        this.coverImagePath = coverImagePath;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,13 +58,5 @@ public class Book {
     public String getAuthour(){
         return this.authour;
     }
-
-    // public void setCover(byte [] coverURL){
-    //     this.coverURL = coverURL;
-    // }
-
-    // public byte [] getCover(){
-    //     return this.coverURL;
-    // }
     
 }

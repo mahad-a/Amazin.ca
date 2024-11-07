@@ -12,10 +12,11 @@
         <script src = "/adminAddBook.js"></script>
     </head>
     <body>
-        <form id="createBookForm">
+        <form id="createBookForm" enctype="multipart/form-data">
             <input type="number" id="ISBN" name="ISBN" placeholder="Enter ISBN">
             <input type="text" id="titleText" name="title" placeholder="Enter Title" required>
             <input type="text" id="authourText" name="authour" placeholder="Enter Authour" required>
+            <input type="file" id="coverImage" name="coverImage" accept="image/*" required>
             <button type="submit">Add Book</button> 
         </form>
         

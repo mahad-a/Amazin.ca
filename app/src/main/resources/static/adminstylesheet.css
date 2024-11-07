@@ -5,7 +5,7 @@ body{
 
 #header{
 
-    background-color:#141920;
+    background-color: gray;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,7 +47,7 @@ body{
 }
 
 #searchButton {
-    background-color: gold;
+    background-color: lightgray;
     border: none;
     cursor: pointer;
     height: 62px; 
@@ -55,5 +55,49 @@ body{
 }
 
 #searchButton:hover {
-    background-color: goldenrod;
+    color:darkgray;
+}
+
+#addBook a:visited{
+    color:aliceblue;
+    font-family: 'Arial Black', Arial, sans-serif;
+    text-decoration: none;
+
+}
+#addBook a {
+    color:aliceblue;
+    font-family: 'Arial Black', Arial, sans-serif;
+    text-decoration: none;
+}
+#addBook a:hover{
+    font-family: 'Arial Black', Arial, sans-serif;
+    color: darkgray;
+    text-decoration: none;
+}
+
+
+#home a:visited{
+    font-family: 'Arial Black', Arial, sans-serif;
+    color: aliceblue;
+    text-decoration: none;
+}
+
+#home a{
+    font-family: 'Arial Black', Arial, sans-serif;
+    color: aliceblue;
+    text-decoration: none;
+}
+
+#home a:hover{
+    font-family: 'Arial Black', Arial, sans-serif;
+    color:darkgray;
+    text-decoration: none;
+}
+
+#subheaderbar{
+    background-color:slategray;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
 }
