@@ -12,6 +12,7 @@ public class Book {
   
     String title;
     String authour;
+    int ISBN;
     @Lob
     byte [] coverImagePath;
 
@@ -25,9 +26,17 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long ISBN;
+    Long id;
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     
-    Book(Long ISBN, String title, String authour){
+    Book(int ISBN, String title, String authour){
         this.ISBN = ISBN;
         this.title = title;
         this.authour = authour;
@@ -38,11 +47,11 @@ public class Book {
         
     }
 
-    public void setISBN(Long ISBN){
+    public void setISBN(int ISBN){
         this.ISBN = ISBN;
 
     }
-    public Long getISBN(int ISBN){
+    public int getISBN(){
         return this.ISBN;
     }
 

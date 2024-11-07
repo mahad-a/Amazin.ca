@@ -56,7 +56,7 @@ public class BookController {
 
     @PostMapping("/add")
     public ResponseEntity<Book> addBook(
-        @RequestParam Long ISBN,
+        @RequestParam int ISBN,
         @RequestParam String title,
         @RequestParam String authour,
         @RequestParam("coverImage") MultipartFile coverImage
