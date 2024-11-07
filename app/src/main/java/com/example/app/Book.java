@@ -1,43 +1,41 @@
 package com.example.app;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity
 public class Book {
 
-    int ISBN;
+  
     String title;
     String authour;
-    byte [] coverURL;
+
+    // @Lob
+    // byte [] coverURL;
 
     @Id
-    Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long ISBN;
     
-    Book(int ISBN, String title, String authour, byte [] coverURL){
+    Book(Long ISBN, String title, String authour){
         this.ISBN = ISBN;
         this.title = title;
         this.authour = authour;
-        this.coverURL = coverURL;
+      
     }
 
     Book(){
         
     }
 
-    public void setId(Long id){
-        this.id = id;
-    }
-
-    public Long getId(){
-        return this.id;
-    }
-
-    public void setISBN(int ISBN){
+    public void setISBN(Long ISBN){
         this.ISBN = ISBN;
 
     }
-    public int getISBN(int ISBN){
+    public Long getISBN(int ISBN){
         return this.ISBN;
     }
 
@@ -56,12 +54,12 @@ public class Book {
         return this.authour;
     }
 
-    public void setCover(byte [] coverURL){
-        this.coverURL = coverURL;
-    }
+    // public void setCover(byte [] coverURL){
+    //     this.coverURL = coverURL;
+    // }
 
-    public byte [] getCover(){
-        return this.coverURL;
-    }
+    // public byte [] getCover(){
+    //     return this.coverURL;
+    // }
     
 }

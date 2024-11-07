@@ -8,14 +8,17 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src = "/adminAddBook.js"></script>
     </head>
     <body>
-        <form id = "createBookForm">
-            <input type = "text" id = "titleText" placeholder = "Enter Title">
-            <input type = "text" id = "authour" placeholder = "authour">
-            <input type="file" id="image" name="image" accept="image/*" required>
-            <button type="submit">Add Book</button>
+        <form id="createBookForm">
+            <input type="number" id="ISBN" name="ISBN" placeholder="Enter ISBN">
+            <input type="text" id="titleText" name="title" placeholder="Enter Title" required>
+            <input type="text" id="authourText" name="authour" placeholder="Enter Authour" required>
+            <button type="submit">Add Book</button> 
         </form>
+        
         
         <script src="" async defer></script>
     </body>

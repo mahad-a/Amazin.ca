@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequestMapping("book")
+@RequestMapping("/book")
 public class BookController {
 
     @Autowired
@@ -33,20 +33,24 @@ public class BookController {
     
 
     @GetMapping("/get")
-    public ResponseEntity<Optional<Book>> getMethodName(@RequestParam Long id) {
+    public ResponseEntity<Optional<Book>> getBook(@RequestParam Long id) {
         Optional<Book> retreivedBooks = bookInventory.findById(id);
         return ResponseEntity.ok(retreivedBooks);
     }
 
-    @PostMapping(value = "/add", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-    public ResponseEntity<Book> addBook(@RequestParam("title") String title,
-                        @RequestParam("author") String author,
-                        @RequestParam("image") MultipartFile image) throws Exception {
+    @GetMapping("/getAll")
+    public ResponseEntity<Iterable<Book>> getAllBooks(){
 
-        Book book = new Book();
-        book.setTitle(title);
-        book.setAuthour(author);
-        book.setCover(image.getBytes());  
+        Iterable<Book> books = bookInventory.findAll();
+
+        return ResponseEntity.ok(books);
+
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Book> addBook(@RequestParam Long ISBN, @RequestParam String title, @RequestParam String authour){
+
+        Book book = new Book(ISBN, title, authour);
         Book savedBook = bookInventory.save(book);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
     }
@@ -56,7 +60,7 @@ public class BookController {
         Optional<Book> books = bookInventory.findById(id);
 
         if(books.isPresent()){
-            bookInventory.delete(books.get());
+            bookInventory.delete(books.get());  
             return ResponseEntity.ok("The book has been deleted.");
         }
         else{
