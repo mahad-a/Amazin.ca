@@ -1,9 +1,11 @@
 package com.example.app;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+@Entity
 public class Admin {
 
     String password;
@@ -12,7 +14,7 @@ public class Admin {
     public String getPassword() {
         return this.password;
     }
-
+    
     public void setPassword(String password) {
         this.password = password;
     }
