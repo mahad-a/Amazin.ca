@@ -2,7 +2,7 @@
 
 ## UML (needs update)
 
-![Alt text](docs/SYSC_4806.png)
+![Alt text](docs/SYSC_4806_UML.png)
 
 ## Entity Relational Diagram
 
