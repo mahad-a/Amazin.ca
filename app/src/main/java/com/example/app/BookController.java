@@ -16,7 +16,7 @@ import java.nio.file.Path;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,9 +49,22 @@ public class BookController {
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Book>> getAllBooks() {
-        List<Book> books = StreamSupport.stream(bookInventory.findAll().spliterator(), false)
-                                    .collect(Collectors.toList());
-        return ResponseEntity.ok(books);
+
+        try{
+            List<Book> books = StreamSupport.stream(bookInventory.findAll().spliterator(), false).collect(Collectors.toList());
+
+            for (Book book: books){
+                System.out.println(book.getISBN());
+                System.out.println(book.getAuthour());
+                System.out.println(book.getTitle());
+                System.out.println(book.getCoverImage());
+            }
+                                
+            return ResponseEntity.ok(books);
+        }catch (Exception e){
+            System.out.println("failed to retrieve books.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/add")
