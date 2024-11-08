@@ -40,7 +40,7 @@ body {
 }
 
 #admin a {
-    background-color: red;
+    background-color: slategray;
     color: white;
 }
 
@@ -50,7 +50,7 @@ body {
 }
 
 #admin a:hover {
-    background-color: darkred;
+    background-color: lightblue;
     transform: translateY(-2px);
 }
 
