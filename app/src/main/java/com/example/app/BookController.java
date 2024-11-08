@@ -1,13 +1,14 @@
 package com.example.app;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.web.multipart.MultipartFile;
-
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 @RequestMapping("/book")
@@ -91,5 +94,41 @@ public class BookController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Book not found.");
         }
     }
+
+
+    @PostMapping("/update")
+    public ResponseEntity<String> postMethodName(
+        @RequestParam("id") Long id,
+        @RequestParam("isbn") int isbn,
+        @RequestParam("title") String title,
+        @RequestParam("author") String author,
+        @RequestParam(value = "coverImage", required = false) MultipartFile coverImage
+    ) {
+        Optional<Book> books = bookInventory.findById(id);
+        if (books.isPresent()){
+            Book book = books.get();
+            book.setISBN(isbn);
+            book.setAuthor(author);
+            book.setTitle(title);
+            try {
+                book.setCoverImage(coverImage.getBytes());
+
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            bookInventory.save(book);
+
+            return ResponseEntity.ok("Book Updated");
+
+            
+
+        }
+        else{
+            return ResponseEntity.ok("No Book Found");
+        }
+    }
+    
 
 }

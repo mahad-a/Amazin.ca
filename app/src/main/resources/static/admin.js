@@ -1,4 +1,32 @@
 $(document).ready(function() {
+    $('body').append(`
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Edit Book</h2>
+                <form id="editBookForm">
+                    <input type="hidden" id="editBookId">
+                    <div>
+                        <label for="editIsbn">ISBN:</label>
+                        <input type="number" id="editIsbn" required>
+                    </div>
+                    <div>
+                        <label for="editTitle">Title:</label>
+                        <input type="text" id="editTitle" required>
+                    </div>
+                    <div>
+                        <label for="editAuthor">Author:</label>
+                        <input type="text" id="editAuthor" required>
+                    </div>
+                    <div>
+                        <label for="editCoverImage">Cover Image:</label>
+                        <input type="file" id="editCoverImage" accept="image/*">
+                    </div>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    `);
         function loadBooks(){
         $.ajax({
             url: "/book/getAll",
@@ -21,7 +49,7 @@ $(document).ready(function() {
                                 <strong>Title:</strong> ${book.title} <br>
                                 <strong>Author:</strong> ${book.author}
                                 <button class="delete-btn" onclick="deleteBook(${book.id})">Delete Book</button>
-
+                                <button class="edit-btn" onclick="openEditModal(${book.id}, '${book.isbn}', '${book.title}', '${book.author}')">Edit Book</button>
                             </div>
 
                         </li>`;
@@ -38,7 +66,6 @@ $(document).ready(function() {
             }
         });
     }
-    loadBooks();
     window.deleteBook = function(bookId) {
         if (confirm('Are you sure you want to delete this book?')) {
             $.ajax({
@@ -55,5 +82,61 @@ $(document).ready(function() {
             });
         }
     };
+
+    window.openEditModal = function(bookId, isbn, title, author) {
+        $("#editBookId").val(bookId);
+        $("#editIsbn").val(isbn);
+        $("#editTitle").val(title);
+        $("#editAuthor").val(author);
+        $("#editModal").show();
+    }
+
+    // Close modal when clicking the X
+    $(".close").click(function() {
+        $("#editModal").hide();
+    });
+
+    // Close modal when clicking outside
+    $(window).click(function(event) {
+        if ($(event.target).is("#editModal")) {
+            $("#editModal").hide();
+        }
+    });
+
+    
+    $("#editBookForm").submit(function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData();
+        formData.append("id", $("#editBookId").val());
+        formData.append("isbn", $("#editIsbn").val());
+        formData.append("title", $("#editTitle").val());
+        formData.append("author", $("#editAuthor").val());
+        
+        const coverImageFile = $("#editCoverImage")[0].files[0];
+        if (coverImageFile) {
+            formData.append("coverImage", coverImageFile);
+        }
+
+        $.ajax({
+            url: "/book/update",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                alert("Book updated successfully!");
+                $("#editModal").hide();
+                loadBooks(); 
+            },
+            error: function(xhr, status, error) {
+                console.error("Error updating book:", error);
+                alert("Error updating book: " + error);
+            }
+        });
+    });
+    loadBooks();
+    
+    
 
 });
