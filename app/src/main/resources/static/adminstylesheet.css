@@ -25,6 +25,13 @@ body{
     height: 100px;
 }
 
+#admin{
+    margin-left: 10px;
+    color: aliceblue;
+    font-family: 'Arial Black', Arial, sans-serif;
+
+}
+
 #searchContainer{
     display: flex;
     flex-direction: row;
