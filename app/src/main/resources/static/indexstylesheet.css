@@ -24,6 +24,13 @@ body{
     height: 100px;
 }
 
+#home{
+    margin-left: 10px;
+    color: aliceblue;
+    font-family: 'Arial Black', Arial, sans-serif;
+
+}
+
 #searchContainer{
     display: flex;
     flex-direction: row;
@@ -40,9 +47,9 @@ body{
     color: lightgray;
     width: 800px; 
     padding: 10px;  
-    border: 1px solid #ccc; /* Optional: add border for better visibility */
-    border-radius: 1px; /* Optional: add rounded corners */
-    height: 40px; /* Set a specific height */
+    border: 1px solid #ccc; 
+    border-radius: 1px; 
+    height: 40px; 
 }
 
 #searchButton {
@@ -50,25 +57,26 @@ body{
     border: none;
     cursor: pointer;
     height: 62px; 
-    padding: 0 20px; /* Add horizontal padding for better appearance */
+    padding: 0 20px; 
 }
 
 #searchButton:hover {
     background-color: lightgray;
 }
 
-#admin a:visited{
+#login a:visited{
     font-family: 'Arial Black', Arial, sans-serif;
     color: aliceblue ;
     text-decoration: none;
 }
-#admin a{
+#login a{
     font-family: 'Arial Black', Arial, sans-serif;
     color: aliceblue ;
     text-decoration: none;
+    transition: all 0.3s ease;
 
 }
-#admin a:hover{
+#login a:hover{
     font-family: 'Arial Black', Arial, sans-serif;
     color: darkgray ;
     text-decoration: none;
@@ -88,6 +96,7 @@ body{
     font-family: 'Arial Black', Arial, sans-serif;
     color: aliceblue ;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 #cart a:hover{

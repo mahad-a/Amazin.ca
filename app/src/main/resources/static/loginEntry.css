@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial Black', Arial, sans-serif;
+    background: gray;
+}
+
+#LoginEntry {
+    background-color: white;
+    padding: 3rem 4rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+}
+
+#LoginEntry h1:first-child {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+#admin, #user {
+    margin: 1.5rem 0;
+}
+
+#admin a, #user a {
+    display: block;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.2rem;  
+    transition: all 0.3s ease;
+}
+
+#admin a {
+    background-color: red;
+    color: white;
+}
+
+#user a {
+    background-color: lightgray;
+    color: white;
+}
+
+#admin a:hover {
+    background-color: darkred;
+    transform: translateY(-2px);
+}
+
+#user a:hover {
+    background-color: darkgray;
+    transform: translateY(-2px);
+}
+
