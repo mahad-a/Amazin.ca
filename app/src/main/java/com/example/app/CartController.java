@@ -6,12 +6,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 
 @Controller
+@RequestMapping("/cart")
 public class CartController {
     @Autowired
     private BookInventory bookInventory;
@@ -24,9 +29,30 @@ public class CartController {
         // empty constructor for now
     }
 
-    @GetMapping("/cart")
+    @GetMapping("/displayCart")
     public String displayCart() {
         return "cart";
+    }
+
+    @GetMapping("/getCart")
+    public ResponseEntity<List<Cart>> getCart(){
+        try{
+            List<Cart> carts = StreamSupport.stream(cartRepository.findAll().spliterator(), false).toList();
+            for (Cart cart: carts){
+                for (Book book: cart.getBooks()){
+                    System.out.println("-------Currently in the cart-------");
+                    System.out.println(book.getISBN());
+                    System.out.println(book.getAuthor());
+                    System.out.println(book.getTitle());
+                    System.out.println(book.getCoverImage());
+                    System.out.println("Book id = " + book.getId());
+                }
+            }
+            return ResponseEntity.ok(carts);
+        } catch (Exception e) {
+            System.out.println("failed to retrieve the shopping cart.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/addToCart")

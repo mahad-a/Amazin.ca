@@ -2852,6 +2852,11 @@ org.attoparser.ParseException: (Line = 1, Column = 28) Incomplete structure: "<!
 2024-11-07 20:22:29 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-11-07 20:22:29 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2024-11-07 20:22:29 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 2024-11-07 20:28:36 [main] INFO  com.example.app.AppApplication - Starting AppApplication using Java 21.0.4 with PID 26338 (/Users/zarifkhan/Desktop/SYSC4806_Project/app/target/classes started by zarifkhan in /Users/zarifkhan/Desktop/SYSC4806_Project/app)
 2024-11-07 20:28:36 [main] DEBUG com.example.app.AppApplication - Running with Spring Boot v3.3.6-SNAPSHOT, Spring v6.1.15-SNAPSHOT
 2024-11-07 20:28:36 [main] INFO  com.example.app.AppApplication - No active profile set, falling back to 1 default profile: "default"
@@ -3215,3 +3220,7 @@ org.attoparser.ParseException: (Line = 1, Column = 28) Incomplete structure: "<!
 2024-11-07 23:07:32 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-11-07 23:07:32 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2024-11-07 23:07:32 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+<<<<<<< Updated upstream
+=======
+>>>>>>> d94a7fad3f614eb1399e37b942483a91abd42910
+>>>>>>> Stashed changes

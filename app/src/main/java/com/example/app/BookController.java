@@ -54,7 +54,7 @@ public class BookController {
                 System.out.println(book.getAuthor());
                 System.out.println(book.getTitle());
                 System.out.println(book.getCoverImage());
-                System.out.println("Bood id = " + book.getId());
+                System.out.println("Book id = " + book.getId());
             }
                                 
             return ResponseEntity.ok(books);

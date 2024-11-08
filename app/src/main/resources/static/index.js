@@ -36,7 +36,7 @@ $(document).ready(function() {
                 $(".add-to-cart").on("click", function() {
                     const bookId = $(this).data("book-id"); // stored the book id in the button
                     $.ajax({
-                        url: `/addToCart?bookID=${bookId}`,
+                        url: `/cart/addToCart?bookID=${bookId}`,
                         type: "POST",
                         contentType: "application/json",
                         success: function() {
