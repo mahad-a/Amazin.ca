@@ -12,7 +12,8 @@
         <script src = "/adminAddBook.js"></script>
     </head>
     <body>
-        <div id = "header">
+        <div id="header">
+            <h1 id="adminAddPage">Add Book</h1>
             <h2 id = "home"><a href = "/">Home</a></h2>
         </div>
         <div id = "subheaderbar">
@@ -22,7 +23,7 @@
         <form id="createBookForm" enctype="multipart/form-data">
             <input type="number" id="ISBNnum" name="ISBNnum" placeholder="Enter ISBN">
             <input type="text" id="titleText" name="title" placeholder="Enter Title" required>
-            <input type="text" id="authourText" name="authour" placeholder="Enter Authour" required>
+            <input type="text" id="authorText" name="author" placeholder="Enter Author" required>
             <input type="file" id="coverImage" name="coverImage" accept="image/*" required>
             <button type="submit">Add Book</button> 
         </form>

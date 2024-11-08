@@ -41,7 +41,7 @@ public class CartController {
             cartRepository.save(cart);
 
             System.out.println(book.get().getISBN());
-            System.out.println(book.get().getAuthour());
+            System.out.println(book.get().getAuthor());
             System.out.println(book.get().getTitle());
 
             return ResponseEntity.ok("Book added to cart successfully.");

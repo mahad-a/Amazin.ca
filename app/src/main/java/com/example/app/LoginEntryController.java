@@ -7,20 +7,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
-
 @Controller
-@RequestMapping("/admin")
-public class AdminController {
-    
-    @GetMapping("/home")
-    public String displayAdminPage() {
-        return "admin";
+public class LoginEntryController {
+
+    @GetMapping("/loginEntry")
+    public String loginEntry() {
+        return "loginEntry";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "loginAdmin";
-    }
-    
     
 }

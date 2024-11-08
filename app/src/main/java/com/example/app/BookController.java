@@ -1,22 +1,15 @@
 package com.example.app;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Path;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,7 +48,7 @@ public class BookController {
 
             for (Book book: books){
                 System.out.println(book.getISBN());
-                System.out.println(book.getAuthour());
+                System.out.println(book.getAuthor());
                 System.out.println(book.getTitle());
                 System.out.println(book.getCoverImage());
                 System.out.println("Bood id = " + book.getId());
@@ -72,12 +65,12 @@ public class BookController {
     public ResponseEntity<Book> addBook(
         @RequestParam int ISBNnum,
         @RequestParam String title,
-        @RequestParam String authour,
+        @RequestParam String author,
         @RequestParam("coverImage") MultipartFile coverImage
     ) {
         try {
             System.out.println("isbn number added: " + ISBNnum);
-            Book book = new Book(ISBNnum, title, authour);
+            Book book = new Book(ISBNnum, title, author);
             book.setCoverImage(coverImage.getBytes()); // Save the image data
             Book savedBook = bookInventory.save(book);
             System.out.println("Cover image size: " + coverImage.getSize() + " bytes");

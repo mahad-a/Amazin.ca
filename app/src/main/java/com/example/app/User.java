@@ -1,5 +1,7 @@
 package com.example.app;
 
+import org.springframework.web.bind.annotation.GetMapping;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +27,11 @@ public class User {
      */
     public User(){}
 
+
+    @GetMapping("/home")
+    public String home(){
+        return "loginUser";
+    }
     /**
      * Constructor to create a User with specified username and password.
      *

@@ -1,38 +1,145 @@
-body{
-    margin:0;
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    min-height: 100vh;
 }
 
-#header{
-    background-color:gray;
+/* Header Styles */
+#header {
+    background-color: gray;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+#adminAddPage {
+    margin-left: 10px;
+    color: aliceblue;
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
 
-#home a:visited{
+#home {
+
+    margin-left: auto;
+}
+
+#home a {
     font-family: 'Arial Black', Arial, sans-serif;
     color: aliceblue;
     text-decoration: none;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border-radius: 4px;
 }
 
-#home a{
-    font-family: 'Arial Black', Arial, sans-serif;
+#home a:visited {
     color: aliceblue;
-    text-decoration: none;
 }
 
-#home a:hover{
-    font-family: 'Arial Black', Arial, sans-serif;
-    color:darkgray;
-    text-decoration: none;
+#home a:hover {
+    color: darkgray;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
 }
 
-
-#subheaderbar{
-    background-color:slategray;
+#subheaderbar {
+    background-color: slategray;
     height: 50px;
     display: flex;
     justify-content: space-between;
-    align-items: center;    
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Form Styles */
+#createBookForm {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input[type="number"],
+input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+    outline: none;
+    border-color: slategray;
+    box-shadow: 0 0 0 2px rgba(112, 128, 144, 0.2);
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px dashed #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+    border-color: slategray;
+    background-color: #f8f9fa;
+}
+
+button[type="submit"] {
+    background-color: slategray;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #445566;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Placeholder Styles */
+::placeholder {
+    color: #aaa;
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #createBookForm {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    input[type="number"],
+    input[type="text"],
+    input[type="file"],
+    button[type="submit"] {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
 }
