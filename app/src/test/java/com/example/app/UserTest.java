@@ -10,29 +10,28 @@ class UserTest {
 
     @BeforeEach
     void setUp() {
-        user = new User("testUser", "testPassword");
+        user = new User("Firas", "password123");
     }
 
     @Test
     void testGettersAndSetters() {
         // Test initial values
-        assertEquals("testUser", user.getUserName());
-        assertEquals("testPassword", user.getPassword());
+        assertEquals("Firas", user.getUserName());
+        assertEquals("password123", user.getPassword());
 
         // Set new values
-        user.setUserName("newUser");
-        user.setPassword("newPassword");
+        user.setUserName("Firas");
+        user.setPassword("password123");
         user.setId(1L);
 
         // Test updated values
-        assertEquals("newUser", user.getUserName());
-        assertEquals("newPassword", user.getPassword());
+        assertEquals("Firas", user.getUserName());
+        assertEquals("password123", user.getPassword());
         assertEquals(1L, user.getId());
     }
 
     @Test
     void testHomeMethod() {
-        // Test the home() method
         assertEquals("loginUser", user.home());
     }
 

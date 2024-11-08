@@ -67,7 +67,7 @@ class CartTest {
     void testRemoveBookNotInCart() {
         cart.removeBookFromCart(book1);
 
-        assertEquals(-1, cart.getCartSize());  // Verify cartSize updates correctly even if book not present
+        assertEquals(-1, cart.getCartSize());
         assertFalse(cart.getBooks().contains(book1));
     }
 
