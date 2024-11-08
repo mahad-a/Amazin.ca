@@ -1,17 +1,20 @@
 package com.example.app;
 
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Component
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToMany
-    private ArrayList<Book> books = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
     private int cartSize = 0;
 
@@ -23,7 +26,7 @@ public class Cart {
         return id;
     }
 
-    public ArrayList<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 

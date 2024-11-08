@@ -23,10 +23,28 @@ $(document).ready(function() {
                             <strong>Title:</strong> ${book.title} <br>
                             <strong>Author:</strong> ${book.author}
                         </div>
+                        <button class="add-to-cart" data-book-id="${book.id}">Add Book to Cart</button
                     </li>`;
 
                 // Append each book item to the list
                 $("#bookList").append(bookItem);
+
+                // add the book to the user's shopping cart
+                $(".add-to-cart").on("click", function() {
+                    const bookId = $(this).data("book-id"); // stored the book id in the button
+                    $.ajax({
+                        url: `/addToCart?bookID=${bookId}`,
+                        type: "POST",
+                        contentType: "application/json",
+                        success: function() {
+                            alert("Book added to cart successfully!");
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Failed to add book to cart.");
+                            console.log(error);
+                        }
+                    });
+                });
             });
         },
 
