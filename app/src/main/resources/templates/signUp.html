@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="//www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
     <link rel="stylesheet" href="/signUp.css">
-
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/signUp.js"></script>
 </head>
 <body>
-<div id = "SignUp">
+<div id="SignUp">
 <h2>Sign Up</h2>
-<form action="/login" method="POST">
+<form id="signUpForm">
     <label for="username">Username:</label><br>
     <input type="text" id="username" name="username" required><br><br>
 
     <label for="password">Password:</label><br>
     <input type="password" id="password" name="password" required><br><br>
 
-    <button type="submit">Sign Up</button>
+    <button type="submit" data-action="user">Sign Up User</button>
+    <button type="submit" data-action="admin">Sign Up Admin</button>
 </form>
 </div>
 </body>
