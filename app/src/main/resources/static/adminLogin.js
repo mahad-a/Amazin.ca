@@ -4,13 +4,13 @@ $(document).ready(function(){
         
         event.preventDefault();
         
-        // Get values from form
+        
         const password = $("#password").val();
         const username = $("#username").val();
 
         
         $.ajax({
-            url : "/admin/login",  // Make sure the URL is correct
+            url : "/admin/login",  
             type : "POST",
             data: {
                 username: username,
