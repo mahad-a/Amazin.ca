@@ -26,8 +26,7 @@ $(document).ready(function() {
                 password: password
             },
             success: function(response) {
-                console.log("Registration successful", response);
-                window.location.href = "/index.html";  
+                console.log("Registration successful", response);  
             },
             error: function(xhr, status, error) {
                 console.error("Registration failed", error);
