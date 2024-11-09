@@ -11,11 +11,11 @@ public class Admin {
     String password;
     String username;
 
-    Admin(){
+    public Admin(){
 
     }
 
-    Admin(String username, String password){
+    public Admin(String username, String password){
         this.username = username;
         this.password = password;
     }
