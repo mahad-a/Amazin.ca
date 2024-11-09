@@ -27,10 +27,13 @@ $(document).ready(function() {
             },
             success: function(response) {
                 console.log("Registration successful", response);
-                window.location.href = "/index.html";  // Redirect after success
+                window.location.href = "/index.html";  
             },
             error: function(xhr, status, error) {
                 console.error("Registration failed", error);
+                console.log(error);
+                console.log(status);
+                console.log(xhr);
             }
         });
     });
