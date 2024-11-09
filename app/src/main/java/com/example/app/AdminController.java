@@ -24,10 +24,25 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping("/login")
-    public String login() {
+    @GetMapping("/loginPage")
+    public String loginPage() {
         return "loginAdmin";
     }
+    
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
+        Iterable<Admin> admins = adminRepository.findAll();
+    
+        for (Admin admin : admins) {
+            if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
+                System.out.println("Login Success!");
+                return ResponseEntity.ok("Login successful!");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials.");
+    }
+    
 
     @PostMapping("/register")
     public ResponseEntity<Admin> register(@RequestParam String username, @RequestParam String password){
