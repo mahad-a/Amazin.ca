@@ -27,6 +27,8 @@ $(document).ready(function() {
             },
             success: function(response) {
                 console.log("Registration successful", response);  
+                window.location.href = "/loginEntry"
+
             },
             error: function(xhr, status, error) {
                 console.error("Registration failed", error);
@@ -36,4 +38,5 @@ $(document).ready(function() {
             }
         });
     });
+
 });
