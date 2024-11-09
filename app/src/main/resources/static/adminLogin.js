@@ -18,6 +18,7 @@ $(document).ready(function(){
             },
             success: function(response){
                 console.log("Success!");
+                window.location.href = "/admin/home";
                 
             },
             error: function(xhr, status, error){
