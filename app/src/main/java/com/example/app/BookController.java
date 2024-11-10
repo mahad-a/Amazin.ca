@@ -128,6 +128,17 @@ public class BookController {
             return ResponseEntity.ok("No Book Found");
         }
     }
-    
 
+    //
+    @GetMapping("/search")
+    public ResponseEntity<List<Book>> searchBooks(@RequestParam String query) {
+        List<Book> validBooks = bookInventory.findByTitleContainingOrAuthorContainingOrISBNnumContaining(query, query, query);
+        // testing
+        if (validBooks.isEmpty()){
+            System.out.println("No Book Found");
+        }else{
+            System.out.println("Book found: " + validBooks.get(0).getTitle());
+        }
+        return ResponseEntity.ok(validBooks);
+    }
 }
