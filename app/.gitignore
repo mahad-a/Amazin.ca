@@ -34,4 +34,4 @@ build/
 
 /src/main/resources/static/covers
 
-/bookstore.log
+app/bookstore.log
