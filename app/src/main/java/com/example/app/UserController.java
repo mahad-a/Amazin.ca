@@ -24,6 +24,10 @@ public class UserController {
      */
     public UserController() {}
 
+    @GetMapping("/home")
+    public String displayUserPage() {
+        return "user";
+    }
 
     /**
      * Endpoint to register a new user.
@@ -59,15 +63,15 @@ public class UserController {
      * @return ResponseEntity with the user if authentication is successful, or HTTP status code
      */
     @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestParam String username, @RequestParam String password){
-        // find user by username
-        User user = userRepository.findByUserName(username);
+    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
+        Iterable<User> users = userRepository.findAll();
 
-        // check password; can make it more secure by adding hashing i guess
-        if(user != null && user.getPassword().equals(password)){
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        for (User user : users) {
+            if (user.getUserName().equals(username) && user.getPassword().equals(password)) {
+                System.out.println("Login Success!");
+                return ResponseEntity.ok("Login successful!");
+            }
         }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials.");
     }
 }
