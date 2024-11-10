@@ -149,7 +149,6 @@ $(document).ready(function() {
                 $("#bookList").empty();
 
                 response.forEach(function(book) {
-                    alert("i just searched for books...")
                     const coverImage = book.coverImage && book.coverImage.trim() ? `data:image/jpeg;base64,${book.coverImage}` : '/images/default-cover.jpg';
                     const bookItem = `
                         <li class="book-item">

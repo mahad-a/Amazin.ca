@@ -7,5 +7,7 @@ import java.util.List;
 
 @Repository
 public interface BookInventory extends CrudRepository<Book, Long> {
-    List<Book> findByTitleContainingOrAuthorContainingOrISBNnumContaining(String title, String author, String isbn);
+    // findByTitleContainingOrAuthorContainingOrISBNnumContaining
+    List<Book> findByTitleContainingOrAuthorContaining(String title, String author);
+    List<Book> findByISBNnum(Integer isbn);
 }
