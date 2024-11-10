@@ -134,11 +134,11 @@ public class BookController {
     public ResponseEntity<List<Book>> searchBooks(@RequestParam String query) {
         List<Book> validBooks;
         try {
-            // Try parsing query as an integer for ISBN search
+            
             Integer isbnnum = Integer.parseInt(query);
             validBooks = bookInventory.findByISBNnum(isbnnum);
         } catch (NumberFormatException e) {
-            // If parsing fails, search by title or author
+           
             validBooks = bookInventory.findByTitleContainingOrAuthorContaining(query, query);
         }
         return ResponseEntity.ok(validBooks);
