@@ -9,7 +9,7 @@ Amazin.ca is an online bookstore platform that allows users to browse, search, a
 ## System Architecture
 
 ### UML Diagram
-![UML Diagram](docs/SYSC_4806_UML.png)
+![UML Diagram](docs/SYSC_4806_UML_v2.png)
 
 
 ### Entity Relationship Diagram
