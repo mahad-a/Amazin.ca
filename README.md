@@ -65,8 +65,11 @@ Access the live application at:
 
 ## Support
 For any issues or questions, please open an issue in the repository or contact the development team.
-- zarifkhan@cmail.carleton.ca
-- arunkarki@cmail.carleton.ca
+- [zarifkhan@cmail.carleton.ca](mailto:zarifkhan@cmail.carleton.ca)
+- [arunkarki@cmail.carleton.ca](mailto:arunkarki@cmail.carleton.ca)
+- [mahadahmed3@cmail.carleton.ca](mailto:mahadahmed3@cmail.carleton.ca)
+- [firaselezzi@cmail.carleton.ca](mailto:firaselezzi@cmail.carleton.ca)
+- [ilyaashussein@cmail.carleton.ca](mailto:ilyaashussein@cmail.carleton.ca)
 
 ## License
 Copyright 2024 Amazin.ca
