@@ -5,7 +5,7 @@ body {
 
 /* Header Styles */
 #header {
-    background-color: gray;
+    background-color: rgb(128, 128, 128);
     display: flex;
     justify-content: space-between;
     align-items: center;

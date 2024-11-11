@@ -28,6 +28,10 @@ public class User {
     public User(){}
 
 
+    
+    /** 
+     * @return String
+     */
     @GetMapping("/home")
     public String home(){
         return "loginUser";

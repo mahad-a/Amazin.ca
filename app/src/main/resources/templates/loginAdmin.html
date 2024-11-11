@@ -7,12 +7,19 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/adminLogin.js"></script>
         <link rel="stylesheet" href="/loginAdmin.css">
     </head>
     <body>
-
-        <h1 id="adminLogin"><a href="/admin/home">Login Admin</a></h1>
+        <form id="adminLoginForm">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br><br>
         
-        <script src="" async defer></script>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+        
+            <button type="submit">Login as Admin</button>
+        </form>
     </body>
 </html>

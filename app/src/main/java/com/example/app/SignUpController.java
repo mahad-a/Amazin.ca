@@ -5,17 +5,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
-public class HomeController {
+@RequestMapping("/signup")
+public class SignUpController {
+
 
     
     /** 
-     * Return's the URL to the homepage of the webapp
      * @return String
      */
-    @GetMapping("/")
-    public String home(){
-        return "index";
+    @GetMapping("/sign-up")
+    public String signUpPage(){
+        return "signUp";
     }
-    
 }

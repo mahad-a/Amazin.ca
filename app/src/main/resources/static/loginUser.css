@@ -9,7 +9,7 @@ body {
     background: gray;
   }
   
-  #adminLoginForm {
+  #userLoginForm {
     background-color: white;
     padding: 3rem 4rem;
     border-radius: 15px;
@@ -19,7 +19,7 @@ body {
     width: 400px;
   }
   
-  #adminLoginForm label {
+  #userLoginForm label {
     font-size: 1rem;
     color: #2c3e50;
     margin-bottom: 0.5rem;
@@ -27,8 +27,8 @@ body {
     text-align: left;
   }
   
-  #adminLoginForm input[type="text"],
-  #adminLoginForm input[type="password"] {
+  #userLoginForm input[type="text"],
+  #userLoginForm input[type="password"] {
     width: 100%;
     padding: 0.8rem;
     margin-top: 0.5rem;
@@ -38,7 +38,7 @@ body {
     font-size: 1rem;
   }
   
-  #adminLoginForm button[type="submit"] {
+  #userLoginForm button[type="submit"] {
     display: inline-block;
     padding: 1rem 2rem;
     text-decoration: none;
@@ -53,7 +53,7 @@ body {
     width: auto;
   }
   
-  #adminLoginForm button[type="submit"]:hover {
+  #userLoginForm button[type="submit"]:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
   }
