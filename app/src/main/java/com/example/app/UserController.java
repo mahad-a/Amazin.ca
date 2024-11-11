@@ -24,6 +24,10 @@ public class UserController {
      */
     public UserController() {}
 
+    
+    /** 
+     * @return String
+     */
     @GetMapping("/home")
     public String displayUserPage() {
         return "user";

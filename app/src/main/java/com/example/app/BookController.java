@@ -1,14 +1,12 @@
 package com.example.app;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.web.multipart.MultipartFile;
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller
@@ -27,21 +25,35 @@ public class BookController {
 
     @Autowired
     private BookInventory bookInventory;
-
+    /**
+     * Default Constructor for the BookController
+     */
     BookController() {
 
     }
 
+    
+    /** 
+     * @return String
+     */
     @GetMapping("/adminAddBookPage")
     public String addBookHTML() {
         return "adminAddBookPage";
     }
-
+    /**
+     * Retreives a specific book from the repository based on the books id
+     * @param id
+     * @return
+     */
     @GetMapping("/get")
     public ResponseEntity<Optional<Book>> getBook(@RequestParam Long id) {
         Optional<Book> retreivedBooks = bookInventory.findById(id);
         return ResponseEntity.ok(retreivedBooks);
     }
+    /**
+     * Retreives all books from the book repository
+     * @return
+     */
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Book>> getAllBooks() {
@@ -62,7 +74,14 @@ public class BookController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
+    /**
+     * Add's a Book to the book repository with the below parameters
+     * @param ISBNnum
+     * @param title
+     * @param author
+     * @param coverImage
+     * @return
+     */
     @PostMapping("/add")
     public ResponseEntity<Book> addBook(
         @RequestParam int ISBNnum,
@@ -81,6 +100,11 @@ public class BookController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+    /**
+     * Delete's a specific book based on it's id
+     * @param id
+     * @return
+     */
 
     @DeleteMapping("/del")
     public ResponseEntity<String> deleteBook(@RequestParam Long id) {
@@ -93,7 +117,15 @@ public class BookController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Book not found.");
         }
     }
-
+    /**
+     * Updates a Book within the book repository (didn't use PUT because complication)
+     * @param id
+     * @param isbn
+     * @param title
+     * @param author
+     * @param coverImage
+     * @return
+     */
 
     @PostMapping("/update")
     public ResponseEntity<String> postMethodName(
@@ -129,7 +161,11 @@ public class BookController {
         }
     }
 
-    //
+    /**
+     * Search's for a book based on a query (irrespective to what parameter of the book it is)
+     * @param query
+     * @return
+     */
     @GetMapping("/search")
     public ResponseEntity<List<Book>> searchBooks(@RequestParam String query) {
         List<Book> validBooks;

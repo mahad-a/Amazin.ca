@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class HomeController {
 
+    
+    /** 
+     * Return's the URL to the homepage of the webapp
+     * @return String
+     */
     @GetMapping("/")
     public String home(){
         return "index";

@@ -19,17 +19,31 @@ public class AdminController {
     @Autowired
     AdminRepository adminRepository;
     
+    
+    /** 
+     * Default home of the Admin 
+     * @return String
+     */
     @GetMapping("/home")
     public String displayAdminPage() {
         return "admin";
     }
+    /**
+     * Login Page for Admin
+     * @return loginAdmin.html
+     */
 
     @GetMapping("/loginPage")
     public String loginPage() {
         return "loginAdmin";
     }
     
-
+    /**
+     * Admin Login Verification
+     * @param username
+     * @param password
+     * @return
+     */
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
         Iterable<Admin> admins = adminRepository.findAll();
@@ -42,8 +56,12 @@ public class AdminController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials.");
     }
-    
-
+    /**
+     * Admin Registration 
+     * @param username
+     * @param password
+     * @return
+     */
     @PostMapping("/register")
     public ResponseEntity<Admin> register(@RequestParam String username, @RequestParam String password){
         try{
