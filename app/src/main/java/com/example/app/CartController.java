@@ -35,16 +35,18 @@ public class CartController {
     public ResponseEntity<List<Cart>> getCart(){
         try{
             List<Cart> carts = StreamSupport.stream(cartRepository.findAll().spliterator(), false).toList();
+            System.out.println("-------Currently in the cart-------");
             for (Cart cart: carts){
                 for (Book book: cart.getBooks()){
-                    System.out.println("-------Currently in the cart-------");
                     System.out.println(book.getISBN());
                     System.out.println(book.getAuthor());
                     System.out.println(book.getTitle());
                     System.out.println(book.getCoverImage());
+                    System.out.println(cart.getCartSize());
                     System.out.println("Book id = " + book.getId());
                 }
             }
+            System.out.println("-------End of the cart-------");
             return ResponseEntity.ok(carts);
         } catch (Exception e) {
             System.out.println("failed to retrieve the shopping cart.");

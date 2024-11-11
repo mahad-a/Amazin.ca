@@ -5,24 +5,32 @@ $(document).ready(function() {
         url: "/cart/getCart",
         type: "GET",
         success: function(carts) {
+            $("#cartItems").empty();
+            console.log("emptied cart items")
             // Iterate over each cart and display its details
             carts.forEach(cart => {
-                const cartHtml = `
+                    let cartHtml = `
                     <li>
                         <strong>Cart ID:</strong> ${cart.id} <br>
                         <strong>Books:</strong> 
-                        <ul>
-                            ${cart.books.map(book => `<li>${book.title} by ${book.author} (ISBN: ${book.isbn}) 
-                            <button class="removeFromCartButton" data-book-id="${book.id}">Remove from Cart</button></li>`).join('')}
-                        </ul>
-                    </li>
-                `;
-                $("#cartItems").append(cartHtml);
+                        <ul>`;
+                    cart.books.forEach(book => {
+                        cartHtml += `
+                        <li>
+                            <div class="book-details">
+                                <strong>ISBN:</strong> ${book.isbn} <br>
+                                <strong >Title:</strong> ${book.title} <br>
+                                <strong>Author:</strong> ${book.author}
+                            </div>
+                            <button class="removeFromCartButton" data-book-id="${book.id}">Remove from Cart</button>
+                        </li>`;
+                    });
+                    $("#cartItems").append(cartHtml);
             });
-            $(".remove-btn").click(function() {
-                let bookId = $(this).data("book-id");
+            $(".removeFromCartButton").on("click", function() {
+                const bookId = $(this).data("book-id");
                 $.ajax({
-                    url: `/cart/removeFromCart?bookId=${bookId}`,
+                    url: `/cart/removeFromCart?bookID=${bookId}`,
                     type: "DELETE",
                     success: function(response) {
                         alert("Book removed from cart.");
