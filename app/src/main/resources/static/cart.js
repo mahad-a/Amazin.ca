@@ -5,9 +5,10 @@ $(document).ready(function() {
         url: "/cart/getCart",
         type: "GET",
         success: function(carts) {
-            $("#cartItems").empty();
+            $("#cartItems").empty(); // empty out the cart to avoid duplicates
             console.log("emptied cart items")
-            // Iterate over each cart and display its details
+            // for each cart in list of carts
+            // for each book in the cart
             carts.forEach(cart => {
                     let cartHtml = `
                     <li>
@@ -27,6 +28,7 @@ $(document).ready(function() {
                     });
                     $("#cartItems").append(cartHtml);
             });
+            // remove from cart button functionality
             $(".removeFromCartButton").on("click", function() {
                 const bookId = $(this).data("book-id");
                 $.ajax({

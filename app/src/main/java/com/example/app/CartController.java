@@ -26,11 +26,19 @@ public class CartController {
         // empty constructor for now
     }
 
+    /**
+     * Displays the current cart
+     * @return cart.html
+     */
     @GetMapping("/displayCart")
     public String displayCart() {
         return "cart";
     }
 
+    /**
+     * Gets the books within the cart and displays to the html
+     * @return ResponseEntity
+     */
     @GetMapping("/getCart")
     public ResponseEntity<List<Cart>> getCart(){
         try{
@@ -54,6 +62,11 @@ public class CartController {
         }
     }
 
+    /**
+     * Adds a book to the shopping cart
+     * @param bookID
+     * @return RepsonseEntity
+     */
     @PostMapping("/addToCart")
     public ResponseEntity<String> addToCart(@RequestParam Long bookID){
         // find if book exists in inventory
@@ -76,6 +89,11 @@ public class CartController {
 
     }
 
+    /**
+     * Removes book from the shopping cart
+     * @param bookID
+     * @return RepsonseEntity
+     */
     @DeleteMapping("/removeFromCart")
     public ResponseEntity<String> removeFromCart(@RequestParam Long bookID) {
             Optional<Book> bookToRemove = bookInventory.findById(bookID);

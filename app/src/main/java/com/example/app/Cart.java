@@ -65,7 +65,7 @@ public class Cart {
     }
     /**
      * Add's a specific book to the cart
-     * @param Book book
+     * @param book
      */
     public void addBookToCart(Book book){
         books.add(book);
