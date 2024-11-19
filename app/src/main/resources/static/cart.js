@@ -1,33 +1,32 @@
 $(document).ready(function() {
     // Fetch all carts when the page loads
     console.log("cart.js loaded");
+    const username = sessionStorage.getItem("username");
+    console.log(username);
+
     $.ajax({
-        url: "/cart/getCart",
+        url: `/cart/getCart?username=${username}`,
         type: "GET",
-        success: function(carts) {
+        success: function(response) {
             $("#cartItems").empty(); // empty out the cart to avoid duplicates
-            console.log("emptied cart items")
+
             // for each cart in list of carts
             // for each book in the cart
-            carts.forEach(cart => {
-                    let cartHtml = `
-                    <li>
-                        <strong>Cart ID:</strong> ${cart.id} <br>
-                        <strong>Books:</strong> 
-                        <ul>`;
-                    cart.books.forEach(book => {
-                        cartHtml += `
-                        <li>
-                            <div class="book-details">
-                                <strong>ISBN:</strong> ${book.isbn} <br>
-                                <strong >Title:</strong> ${book.title} <br>
-                                <strong>Author:</strong> ${book.author}
-                            </div>
-                            <button class="removeFromCartButton" data-book-id="${book.id}">Remove from Cart</button>
-                        </li>`;
-                    });
-                    $("#cartItems").append(cartHtml);
+            response.books.forEach(book => {
+
+                $("#cartItems").append(
+                    `<li>
+                    <div class="book-details">
+                        <strong>ISBN:</strong> ${book.isbn} <br>
+                        <strong>Title:</strong> ${book.title} <br>
+                        <strong>Author:</strong> ${book.author}
+                    </div>
+                    <button class="removeFromCartButton" data-book-id="${book.id}">Remove from Cart</button>
+                </li>`
+                )
+                
             });
+           
             // remove from cart button functionality
             $(".removeFromCartButton").on("click", function() {
                 const bookId = $(this).data("book-id");

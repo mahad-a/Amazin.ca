@@ -2,6 +2,9 @@ package com.example.app;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,8 +26,10 @@ public class User {
 
     private String username;
     private String password;
-    @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
     /**
@@ -50,6 +55,8 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.cart = new Cart();  
+        this.cart.setUser(this);
     }
 
     /**
