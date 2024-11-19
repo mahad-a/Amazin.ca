@@ -11,6 +11,20 @@ $(document).ready(function() {
             
             `
         )
+        $(document).on("click", ".add-to-cart", function(){
+            const bookId = $(this).data('book-id');
+            $.ajax({
+                url: `/cart/addToCart?bookID=${bookId}&username=${username}`,
+                type: "POST",
+                success: function(response){
+                    alert("Book added to cart!");
+                },
+                error: function(xhr, status, error){
+                    console.log(error);
+                    alert("Failed to add book to cart");
+                }
+            });
+        });
     }
     else{
         sessionStorage.removeItem("username");
@@ -49,21 +63,7 @@ $(document).ready(function() {
                 $("#bookList").append(bookItem);
 
                 // add the book to the user's shopping cart
-                $(".add-to-cart").on("click", function() {
-                    const bookId = $(this).data("book-id"); // stored the book id in the button
-                    $.ajax({
-                        url: `/cart/addToCart?bookID=${bookId}`,
-                        type: "POST",
-                        contentType: "application/json",
-                        success: function() {
-                            alert("Book added to cart successfully!");
-                        },
-                        error: function(xhr, status, error) {
-                            alert("Failed to add book to cart.");
-                            console.log(error);
-                        }
-                    });
-                });
+
             });
         },
 
@@ -98,6 +98,7 @@ $(document).ready(function() {
                                 <strong>Title:</strong> ${book.title} <br>
                                 <strong>Author:</strong> ${book.author}
                             </div>
+                            <button id="addBookToCart">add to cart</button>
                         </li>`;
                     $("#bookList").append(bookItem);
                 });
@@ -109,4 +110,6 @@ $(document).ready(function() {
 
     });
 
+
+  
 });

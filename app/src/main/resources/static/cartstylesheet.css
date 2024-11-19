@@ -1,152 +1,105 @@
-body{
+body {
+    font-family: 'Amazon Ember', Arial, sans-serif;
     margin: 0;
+    padding: 0;
+    background-color: #f3f3f3;
+    color: #111;
 }
 
-#header{
-    /* 141920; */
-    background-color:gray;
+#header {
+    background-color: #232f3e;
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 20px;
 }
 
-#titleContainer {
+#cart {
+    margin: 0;
+    font-size: 1.5rem;
+    color: white;
+}
+
+#searchContainer {
+    flex:1;
+    max-width: 1000px;
+    margin: 0 auto; /* This centers the search bar horizontally */
     display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-#amazinLogo{
-
-    margin:0;
-    padding: 0px;
-    max-width: 100%;
-    height: 100px;
-}
-
-#home a:visited{
-    font-family: 'Arial Black', Arial, sans-serif;
-    color: aliceblue;
-    text-decoration: none;
-}
-
-#home a{
-    font-family: 'Arial Black', Arial, sans-serif;
-    color: aliceblue;
-    text-decoration: none;
-}
-
-#home a:hover{
-    font-family: 'Arial Black', Arial, sans-serif;
-    color:darkgray;
-    text-decoration: none;
-}
-
-#searchContainer{
-    display: flex;
-    flex-direction: row;
     justify-content: center;
+}
+  
+  #searchForm {
+    display: flex;
     align-items: center;
-}
-
-#searchForm {
-    display: flex; /* Ensures the input and button are on the same line */
-    align-items: center; /* Aligns items vertically */
-}
-
-#search {
-    color: lightgray;
-    width: 800px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 1px;
-    height: 40px;
-}
-
-#searchButton {
-    background-color: lightgrey;
+    width: 100%;
+  }
+  
+  #search {
+    flex: 1;
+    color: #333;
+    background-color: white;
+    padding: 16px 15px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  #search:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.5);
+  }
+  
+  #search::placeholder {
+    color: #666;
+  }
+  
+  #searchButton {
+    background-color: #febd69;
     border: none;
     cursor: pointer;
-    height: 62px;
-    padding: 0 20px;
-}
+    padding: 18.5px 15px;
+    border-radius: 0 4px 4px 0;
+    transition: all 0.2s ease;
+    font-weight: bold;
+  }
+  
+  #searchButton:hover {
+    background-color: #f3a847;
+  }
 
-#searchButton:hover {
-    background-color: lightgray;
-}
-
-#login a:visited{
-    font-family: 'Arial Black', Arial, sans-serif;
-    color: aliceblue ;
+#home {
+    margin-left: auto;
     text-decoration: none;
 }
-#login a{
+
+#home a {
     font-family: 'Arial Black', Arial, sans-serif;
-    color: aliceblue ;
     text-decoration: none;
+    color: #ffffff;
+    padding: 10px 15px;
     transition: all 0.3s ease;
-
+    display: inline-block;
+    border-radius: 4px;
 }
-#login a:hover{
-    font-family: 'Arial Black', Arial, sans-serif;
-    color: darkgray ;
+
+#home a:visited {
     text-decoration: none;
+    color: #ffffff;
+    
 }
 
-#cart{
-    padding-right: 10px;
-}
-#cart a:visited{
-    font-family: 'Arial Black', Arial, sans-serif;
-    color: aliceblue ;
+#home a:hover {
     text-decoration: none;
-
+    color: #d5d9d9;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+    
 }
 
-#cart a{
-    font-family: 'Arial Black', Arial, sans-serif;
-    color: aliceblue ;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
 
-#cart a:hover{
-    font-family: 'Arial Black', Arial, sans-serif;
-    color: darkgray ;
-    text-decoration: none;
-
-}
-
-#subheaderbar{
-    background-color:slategray;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.book-item {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin: 10px;
-    border-radius: 5px;
-    display: flex;
-    align-items: start;
-    gap: 20px;
-}
-
-.image-container {
-    width: 150px;
-    height: 200px;
-    overflow: hidden;
-}
-
-.book-cover {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.book-details {
-    flex-grow: 1;
+#subheaderbar {
+    background-color: #37475a;
+    height: 40px;
 }

@@ -3,6 +3,8 @@ package com.example.app;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +19,13 @@ public class Cart {
     private List<Book> books = new ArrayList<>();
     private int cartSize = 0;
 
-    @OneToOne
+    @JsonIgnore
+    @OneToOne(mappedBy = "cart")
     private User user;
 
+    Cart(){
+
+    }
     /**
      * Set Cart Id
      * @param id

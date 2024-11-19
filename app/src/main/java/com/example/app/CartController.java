@@ -2,6 +2,7 @@ package com.example.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,9 @@ public class CartController {
     private Cart cart;
     @Autowired
     private CartRepository cartRepository;
+    @Autowired 
+    private UserRepository userRepository;
+    
 
     public CartController(){
         // empty constructor for now
@@ -40,26 +44,20 @@ public class CartController {
      * @return ResponseEntity
      */
     @GetMapping("/getCart")
-    public ResponseEntity<List<Cart>> getCart(){
-        try{
-            List<Cart> carts = StreamSupport.stream(cartRepository.findAll().spliterator(), false).toList();
-            System.out.println("-------Currently in the cart-------");
-            for (Cart cart: carts){
-                for (Book book: cart.getBooks()){
-                    System.out.println(book.getISBN());
-                    System.out.println(book.getAuthor());
-                    System.out.println(book.getTitle());
-                    System.out.println(book.getCoverImage());
-                    System.out.println(cart.getCartSize());
-                    System.out.println("Book id = " + book.getId());
-                }
+    public ResponseEntity<Cart> getCart(@RequestParam String username){
+        Iterable<User> users = userRepository.findAll();
+
+        for(User user : users){
+            if (user.getUsername().equals(username)){
+                System.out.println("retrieved Cart" + user.getCart());
+                System.out.println("Content: " + user.getCart().getBooks());
+                System.out.println("From: " + user.getUsername());
+                return ResponseEntity.ok(user.getCart());
             }
-            System.out.println("-------End of the cart-------");
-            return ResponseEntity.ok(carts);
-        } catch (Exception e) {
-            System.out.println("failed to retrieve the shopping cart.");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+        System.out.println("User not found");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        
     }
 
     /**
@@ -68,24 +66,31 @@ public class CartController {
      * @return RepsonseEntity
      */
     @PostMapping("/addToCart")
-    public ResponseEntity<String> addToCart(@RequestParam Long bookID){
+    public ResponseEntity<String> addToCart(@RequestParam Long bookID, @RequestParam String username){
         // find if book exists in inventory
-        Optional<Book> book = bookInventory.findById(bookID);
+        Iterable<Book> books = bookInventory.findAll();
 
-        // check if book is present
-        if (book.isPresent()) {
-            // add to the cart
-            cart.addBookToCart(book.get());
-            cartRepository.save(cart);
+        Book foundBook;
 
-            System.out.println(book.get().getISBN());
-            System.out.println(book.get().getAuthor());
-            System.out.println(book.get().getTitle());
+        for(Book book : books){
+            if (book.id == bookID){
+                foundBook = book;
+                Iterable<User> users = userRepository.findAll();
 
-            return ResponseEntity.ok("Book added to cart successfully.");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found.");
+                for (User user : users){
+                    if (user.getUsername().equals(username)){
+                        user.getCart().addBookToCart(foundBook);
+                        System.out.println("Added:" + book.getTitle() + " To: " + user.getUsername() + " Cart Contents: " + user.getCart().getBooks().toString());
+                        userRepository.save(user);
+                        return ResponseEntity.ok("Book added to cart successfully.");
+                    }
+                } 
+            }
         }
+        
+        
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found.");
+        
 
     }
 
@@ -95,20 +100,23 @@ public class CartController {
      * @return RepsonseEntity
      */
     @DeleteMapping("/removeFromCart")
-    public ResponseEntity<String> removeFromCart(@RequestParam Long bookID) {
-            Optional<Book> bookToRemove = bookInventory.findById(bookID);
-            if (bookToRemove.isPresent()) {
-                for (Book book : cart.getBooks()) {
-                    if (book.getId().equals(bookID)) {
-                        cart.removeBookFromCart(book);
-                        cartRepository.save(cart);
-                        return ResponseEntity.ok("Book removed from cart successfully.");
-                    }
+    public ResponseEntity<String> removeFromCart(@RequestParam Long bookID, @RequestParam String username) {
+        Iterable<User> users = userRepository.findAll();
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                Cart userCart = user.getCart();
+                Optional<Book> bookToRemove = userCart.getBooks().stream()
+                    .filter(book -> book.getId().equals(bookID))
+                    .findFirst();
+                
+                if (bookToRemove.isPresent()) {
+                    userCart.removeBookFromCart(bookToRemove.get());
+                    cartRepository.save(userCart);
+                    return ResponseEntity.ok("Book removed from cart successfully.");
                 }
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found in the cart.");
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found in the inventory.");
             }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found in the cart.");
     }
 
 
