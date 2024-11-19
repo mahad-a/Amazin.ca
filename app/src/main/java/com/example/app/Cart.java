@@ -15,9 +15,10 @@ public class Cart {
 
     @ManyToMany
     private List<Book> books = new ArrayList<>();
-
     private int cartSize = 0;
 
+    @OneToOne
+    private User user;
 
     /**
      * Set Cart Id
@@ -78,5 +79,12 @@ public class Cart {
     public void removeBookFromCart(Book book){
         books.remove(book);
         cartSize--;
+    }
+
+    public void setUser(User user){
+        this.user = user;
+    }
+    public User getUser(){
+        return this.user;
     }
 }

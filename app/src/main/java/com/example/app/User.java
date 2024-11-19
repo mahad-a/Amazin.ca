@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -19,8 +21,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String userName;
+    private String username;
     private String password;
+    @OneToOne
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private Cart cart;
 
     /**
      * Default constructor.
@@ -39,11 +44,11 @@ public class User {
     /**
      * Constructor to create a User with specified username and password.
      *
-     * @param userName the username of the user
+     * @param username the username of the user
      * @param password the password of the user
      */
-    public User(String userName, String password) {
-        this.userName = userName;
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
@@ -70,8 +75,8 @@ public class User {
      *
      * @return the username of the user
      */
-    public String getUserName() {
-        return this.userName;
+    public String getUsername() {
+        return this.username;
     }
 
     /**
@@ -79,8 +84,8 @@ public class User {
      *
      * @param userName the username to set
      */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     /**
@@ -99,5 +104,14 @@ public class User {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setCart(Cart cart){
+        this.cart = cart;
+
+    }
+
+    public Cart getCart(){
+        return this.cart;
     }
 }

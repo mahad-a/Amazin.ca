@@ -1,5 +1,21 @@
 $(document).ready(function() {
 
+    const username = sessionStorage.getItem("username");
+    if (username){
+        $("#login").remove();
+        $("#header").append(
+            `<h1> Hello! ${username}</h1>
+            <a href="/cart/displayCart" id="cartButton"> 
+                <img src="/cart.png" alt="Shopping Cart" class="cart-icon">
+            </a>
+            
+            `
+        )
+    }
+    else{
+        sessionStorage.removeItem("username");
+    }
+
     $.ajax({
         url: "/book/getAll",
         type: "GET",

@@ -16,16 +16,16 @@ class UserTest {
     @Test
     void testGettersAndSetters() {
         // Test initial values
-        assertEquals("Firas", user.getUserName());
+        assertEquals("Firas", user.getUsername());
         assertEquals("password123", user.getPassword());
 
         // Set new values
-        user.setUserName("Firas");
+        user.setUsername("Firas");
         user.setPassword("password123");
         user.setId(1L);
 
         // Test updated values
-        assertEquals("Firas", user.getUserName());
+        assertEquals("Firas", user.getUsername());
         assertEquals("password123", user.getPassword());
         assertEquals(1L, user.getId());
     }
@@ -38,7 +38,7 @@ class UserTest {
     @Test
     void testDefaultConstructor() {
         User emptyUser = new User();
-        assertNull(emptyUser.getUserName());
+        assertNull(emptyUser.getUsername());
         assertNull(emptyUser.getPassword());
         assertNull(emptyUser.getId());
     }
