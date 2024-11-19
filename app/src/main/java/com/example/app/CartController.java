@@ -50,6 +50,8 @@ public class CartController {
         for(User user : users){
             if (user.getUsername().equals(username)){
                 System.out.println("retrieved Cart" + user.getCart());
+                System.out.println("Content: " + user.getCart().getBooks());
+                System.out.println("From: " + user.getUsername());
                 return ResponseEntity.ok(user.getCart());
             }
         }
@@ -78,6 +80,8 @@ public class CartController {
                 for (User user : users){
                     if (user.getUsername().equals(username)){
                         user.getCart().addBookToCart(foundBook);
+                        System.out.println("Added:" + book.getTitle() + " To: " + user.getUsername() + " Cart Contents: " + user.getCart().getBooks().toString());
+                        userRepository.save(user);
                         return ResponseEntity.ok("Book added to cart successfully.");
                     }
                 } 
@@ -96,20 +100,23 @@ public class CartController {
      * @return RepsonseEntity
      */
     @DeleteMapping("/removeFromCart")
-    public ResponseEntity<String> removeFromCart(@RequestParam Long bookID) {
-            Optional<Book> bookToRemove = bookInventory.findById(bookID);
-            if (bookToRemove.isPresent()) {
-                for (Book book : cart.getBooks()) {
-                    if (book.getId().equals(bookID)) {
-                        cart.removeBookFromCart(book);
-                        cartRepository.save(cart);
-                        return ResponseEntity.ok("Book removed from cart successfully.");
-                    }
+    public ResponseEntity<String> removeFromCart(@RequestParam Long bookID, @RequestParam String username) {
+        Iterable<User> users = userRepository.findAll();
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                Cart userCart = user.getCart();
+                Optional<Book> bookToRemove = userCart.getBooks().stream()
+                    .filter(book -> book.getId().equals(bookID))
+                    .findFirst();
+                
+                if (bookToRemove.isPresent()) {
+                    userCart.removeBookFromCart(bookToRemove.get());
+                    cartRepository.save(userCart);
+                    return ResponseEntity.ok("Book removed from cart successfully.");
                 }
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found in the cart.");
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found in the inventory.");
             }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found in the cart.");
     }
 
 

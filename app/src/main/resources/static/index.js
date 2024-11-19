@@ -11,22 +11,19 @@ $(document).ready(function() {
             
             `
         )
-        $("#addBookToCart").click(function(){
+        $(document).on("click", ".add-to-cart", function(){
             const bookId = $(this).data('book-id');
             $.ajax({
-    
-                url: `cart/addToCart?BookID = ${bookId} & username=${username}`,
-                type : "POST",
-                success : function(response){
-                    console.log(response);
+                url: `/cart/addToCart?bookID=${bookId}&username=${username}`,
+                type: "POST",
+                success: function(response){
+                    alert("Book added to cart!");
                 },
-                error : function(xhr, status, error){
+                error: function(xhr, status, error){
                     console.log(error);
+                    alert("Failed to add book to cart");
                 }
-    
-            })
-    
-    
+            });
         });
     }
     else{
