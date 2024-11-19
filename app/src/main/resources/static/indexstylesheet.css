@@ -110,20 +110,20 @@ body {
 }
 
 .cart-icon {
-  width: 55px;
-  height: 55px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
   filter: brightness(0) invert(1);
   /* Makes the icon white */
 }
 
 /* Username Display */
-#header h1 {
+/* #usernameDisplay {
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 2 rem;
   margin: 0;
   padding: 0 15px;
-}
+} */
 
 /* Responsive additions */
 @media (max-width: 768px) {
@@ -136,9 +136,9 @@ body {
     height: 24px;
   }
 
-  #header h1 {
+  /* #usernameDisplay {
     font-size: 1rem;
-  }
+  } */
 }
 
 /* Subheader Bar */
