@@ -1,5 +1,6 @@
 package com.example.app;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,14 +25,6 @@ public class UserController {
      */
     public UserController() {}
 
-    
-    /** 
-     * @return String
-     */
-    @GetMapping("/home")
-    public String displayUserPage() {
-        return "user";
-    }
 
     /**
      * Endpoint to register a new user.
@@ -67,15 +60,28 @@ public class UserController {
      * @return ResponseEntity with the user if authentication is successful, or HTTP status code
      */
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<User> login(@RequestParam String username, @RequestParam String password) {
         Iterable<User> users = userRepository.findAll();
 
         for (User user : users) {
-            if (user.getUserName().equals(username) && user.getPassword().equals(password)) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 System.out.println("Login Success!");
-                return ResponseEntity.ok("Login successful!");
+                return ResponseEntity.ok(user);
             }
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials.");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
+
+    @GetMapping("/get")
+    public ResponseEntity<User> getMethodName(@RequestParam String username) {
+        Iterable<User> users = userRepository.findAll();
+
+        for (User user : users){
+            if (user.getUsername().equals(username)){
+                return ResponseEntity.ok(user);
+            }
+        }
+        return null;
+    }
+    
 }

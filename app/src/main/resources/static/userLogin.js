@@ -18,7 +18,10 @@ $(document).ready(function(){
             },
             success : function(resource){
                 console.log("User login Success!");
-                window.location.href = "user/home";
+                console.log("Login response:", resource);
+                sessionStorage.setItem("username", resource.username);
+                console.log(sessionStorage.getItem("username"));
+                window.location.href = "/";
             },
 
             error : function(xhr, status, error){

@@ -1,36 +1,62 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
+    background-color: #f3f3f3; 
     min-height: 100vh;
 }
 
-/* Header Styles */
+
 #header {
-    background-color: gray;
+    background-color: #232f3e; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 #adminAddPage {
     margin-left: 10px;
-    color: aliceblue;
+    color: #ffffff;
     font-family: 'Arial Black', Arial, sans-serif;
     font-weight: bold;
     letter-spacing: 0.5px;
 }
 
-#home {
+#admin {
+    margin-left: 1050px;
+    
+}
 
+#admin a {
+    font-family: 'Arial Black', Arial, sans-serif;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+#admin a:visited {
+    color: #ffffff;
+}
+
+#admin a:hover {
+    color: #d5d9d9;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+
+
+#home {
     margin-left: auto;
 }
 
 #home a {
     font-family: 'Arial Black', Arial, sans-serif;
-    color: aliceblue;
+    color: #ffffff;
     text-decoration: none;
     padding: 10px 15px;
     transition: all 0.3s ease;
@@ -39,17 +65,18 @@ body {
 }
 
 #home a:visited {
-    color: aliceblue;
+    color: #ffffff;
 }
 
 #home a:hover {
-    color: darkgray;
+    color: #d5d9d9;
     background-color: rgba(255, 255, 255, 0.1);
     transform: translateY(-1px);
 }
 
+
 #subheaderbar {
-    background-color: slategray;
+    background-color: #37475a; /* Darker gray Amazon subheader */
     height: 50px;
     display: flex;
     justify-content: space-between;
@@ -58,26 +85,34 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Form Styles */
+
 #createBookForm {
-    max-width: 600px;
+    max-width: 500px;
     margin: 40px auto;
-    padding: 30px;
+    padding: 20px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
+}
+
+#createBookForm h2 {
+    color: #111;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-align: center;
 }
 
 input[type="number"],
-input[type="text"] {
+input[type="text"],
+input[type="file"] {
     width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #e0e0e0;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 1rem;
     transition: all 0.3s ease;
     box-sizing: border-box;
 }
@@ -85,50 +120,46 @@ input[type="text"] {
 input[type="number"]:focus,
 input[type="text"]:focus {
     outline: none;
-    border-color: slategray;
-    box-shadow: 0 0 0 2px rgba(112, 128, 144, 0.2);
+    border-color: #febd69; /* Amazon orange highlight */
+    box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.2);
 }
 
 input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    border: 2px dashed #e0e0e0;
-    border-radius: 4px;
+    border: 1px dashed #ddd;
     cursor: pointer;
-    transition: all 0.3s ease;
+    padding: 10px;
 }
 
 input[type="file"]:hover {
-    border-color: slategray;
+    border-color: #febd69;
     background-color: #f8f9fa;
 }
 
+
 button[type="submit"] {
-    background-color: slategray;
-    color: white;
-    padding: 12px 24px;
-    border: none;
+    background-color: #febd69; 
+    color: #111;
+    padding: 12px;
+    border: 1px solid #f3a847;
     border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 10px;
+    transition: all 0.2s ease;
 }
 
 button[type="submit"]:hover {
-    background-color: #445566;
+    background-color: #f3a847; 
     transform: translateY(-1px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Placeholder Styles */
+
 ::placeholder {
-    color: #aaa;
+    color: #888;
     opacity: 1;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     #createBookForm {
         margin: 20px;
