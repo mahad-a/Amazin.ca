@@ -19,19 +19,29 @@ $(document).ready(function() {
             }
 
             response.books.forEach(book => {
-                $("#cartItems").append(
-                    `<li>
+                const coverImage = book.coverImage && book.coverImage.trim()
+                    ? `data:image/jpeg;base64,${book.coverImage}`
+                    : '/images/default-cover.jpg';
+                
+                $("#cartItems").append(`
+                    <li class="book-item">
+                        <div class="image-container">
+                            <img src="${coverImage}"
+                                alt="Cover of ${book.title}"
+                                class="book-cover">
+                        </div>
                         <div class="book-details">
                             <strong>ISBN:</strong> ${book.isbn} <br>
                             <strong>Title:</strong> ${book.title} <br>
                             <strong>Author:</strong> ${book.author}
                         </div>
-                        <button class="removeFromCartButton" data-book-id="${book.id}">Remove</button>
-                    </li>`
-                );
+                        <button class="removeFromCartButton" data-book-id="${book.id}">Remove item</button>
+                    </li>
+                `);
             });
 
-            $(".removeFromCartButton").on("click", function() {
+            // Move the click handler outside the loop and use event delegation
+            $("#cartItems").on("click", ".removeFromCartButton", function() {
                 const bookId = $(this).data("book-id");
                 
                 $.ajax({
@@ -50,7 +60,7 @@ $(document).ready(function() {
         },
         error: function(xhr, status, error) {
             $("#emptyCartMessage").text("Failed to retrieve cart. Please try again.").show();
-            console.error("Failed to retrieve carts:", error);
+            console.error("Failed to retrieve cart:", error);
         }
     });
 });

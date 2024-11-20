@@ -217,3 +217,23 @@ body {
     text-align: center;
   }
 }
+
+
+.add-to-cart{
+  background-color: #febd69;
+  color: #111;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: bold;
+  align-self: flex-start;
+  margin-left: auto;
+}
+
+.add-to-cart:hover{
+  background-color: #f3a847;
+  transform: translateY(-1px);
+}
+
