@@ -9,6 +9,10 @@ $(document).ready(function() {
                 <img src="/cart.png" alt="Shopping Cart" class="cart-icon">
             </a>
             
+            <a href="/logout" id="cartButton"> 
+                <img src="/Logout.png" alt="Log Out" class="cart-icon">
+            </a>
+            
             `
         )
         $(document).on("click", ".add-to-cart", function(){
