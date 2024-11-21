@@ -61,14 +61,13 @@ public class UserController {
      */
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestParam String username, @RequestParam String password) {
-        Iterable<User> users = userRepository.findAll();
+        User user = userRepository.findByUsername(username);
 
-        for (User user : users) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                System.out.println("Login Success!");
-                return ResponseEntity.ok(user);
-            }
+        if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+            System.out.println("Login Success!");
+            return ResponseEntity.ok(user);
         }
+
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
