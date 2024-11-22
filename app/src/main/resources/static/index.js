@@ -4,22 +4,17 @@ $(document).ready(function() {
     if (username){
         $("#login").remove();
         $("#header").append(
-            `
-            <a href="/cart/displayCart" id="cartButton"> 
+            `<a href="/cart/displayCart" id="cartButton"> 
                 <img src="/cart.png" alt="Shopping Cart" class="cart-icon">
             </a>
             
-             <a href="/settings" id="cartButton"> 
+            <a href="/settings/settingsEntry" id="cartButton"> 
                 <img src="/Settings.png" alt="Settings"  style="width: 60px; height: 60px;">
             </a>
             
-            
             <a href="/logout" id="cartButton"> 
                 <img src="/Logout.png" alt="Log Out" class="cart-icon">
-            </a>
-            
-           
-            `
+            </a>`
         )
         $(document).on("click", ".add-to-cart", function(){
             const bookId = $(this).data('book-id');
