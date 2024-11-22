@@ -88,12 +88,13 @@ public class BookController {
         @RequestParam int ISBNnum,
         @RequestParam String title,
         @RequestParam String author,
+        @RequestParam int quantity,
         @RequestParam("coverImage") MultipartFile coverImage
     ) {
         try {
             System.out.println("isbn number added: " + ISBNnum);
             Book book = new Book(ISBNnum, title, author);
-            book.setQuantity(3);
+            book.setQuantity(quantity);
             book.setCoverImage(coverImage.getBytes()); 
             Book savedBook = bookInventory.save(book);
             System.out.println("Cover image size: " + coverImage.getSize() + " bytes");
