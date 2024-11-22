@@ -83,6 +83,12 @@ public class UserController {
         return null;
     }
 
+    /**
+     * Verify user/admin password
+     * @param username username of the user/admin
+     * @param password passsword of the user/admin
+     * @return ResponseEntity with the user if verification is successful, or HTTP status code
+     */
     @PostMapping("/verifyPassword")
     public ResponseEntity<String> verifyPassword(@RequestParam String username, @RequestParam String password) {
         User user = userRepository.findByUsername(username);

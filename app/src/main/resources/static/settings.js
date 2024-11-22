@@ -1,10 +1,11 @@
 $(document).ready(function() {
     const settingsActions = $("#settings-actions");
     const username = sessionStorage.getItem("username");
-    console.log("Username from sessionStorage:", username);
+    console.log("Username from sessionStorage:", username); // show the current logged in username
 
+    // update page with form to change username
     $("#change-username").click(function() {
-        settingsActions.empty();
+        settingsActions.empty(); // ensure page is empty and clear
 
         const changeUsernameForm = `
             <div id="change-username-section" class="settings-section">
@@ -22,11 +23,12 @@ $(document).ready(function() {
         `;
 
         settingsActions.append(changeUsernameForm);
-        $("#change-username-section").show();
+        $("#change-username-section").show(); // ensure form is viewable
     });
 
+    // update page with form to change password
     $("#change-password").click(function() {
-        settingsActions.empty();
+        settingsActions.empty(); // ensure page is empty and clear
 
         const changePasswordForm = `
             <div id="change-password-section" class="settings-section">
@@ -44,11 +46,12 @@ $(document).ready(function() {
         `;
 
         settingsActions.append(changePasswordForm);
-        $("#change-password-section").show();
+        $("#change-password-section").show(); // ensure form is viewable
     });
 
+    // update page with form to delete account
     $("#delete-account").click(function () {
-        settingsActions.empty();
+        settingsActions.empty(); // ensure page is empty and clear
 
         const deleteAccountForm = `
             <div id="delete-account-section" class="settings-section">
@@ -66,10 +69,11 @@ $(document).ready(function() {
         `;
 
         settingsActions.append(deleteAccountForm);
-        $("#delete-account-section").show();
+        $("#delete-account-section").show(); // ensure page is viewable
     });
 
 
+    // process the passed information depending what submit is selected
     $(document).on("submit", "#change-username-form", function(event) {
         event.preventDefault();
 
@@ -86,7 +90,7 @@ $(document).ready(function() {
             success: function(response) {
                 alert("Username changed successfully!");
                 sessionStorage.setItem("username", newUsername);
-                location.reload();
+                location.reload(); // refresh page to ensure the fields are cleared for next use
             },
             error: function(xhr, status, error) {
                 alert("Error changing username: " + error);
@@ -110,7 +114,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 alert("Password changed successfully!");
-                location.reload();
+                location.reload(); // refresh page to ensure the fields are cleared for next use
             },
             error: function(xhr, status, error) {
                 alert("Error changing password: " + error);
@@ -134,6 +138,7 @@ $(document).ready(function() {
                 },
                 success: function (response) {
                     alert("Your account has been deleted successfully.");
+                    // redirect to log in page as user's account no longer exists so is no longer logged in
                     window.location.href = "/loginEntry";
                 },
                 error: function (xhr, status, error) {

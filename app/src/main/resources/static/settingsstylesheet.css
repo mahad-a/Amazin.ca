@@ -188,7 +188,6 @@ body {
     /* Makes the icon white */
 }
 
-/* Text Entry Fields */
 .text-entry {
     width: 25%;
     padding: 10px;
@@ -208,7 +207,6 @@ body {
     box-shadow: 0 0 5px rgba(255, 189, 105, 0.5);
 }
 
-/* Form Labels for Better Spacing */
 form label {
     display: block;
     margin-bottom: 5px;
@@ -216,7 +214,6 @@ form label {
     color: #333;
 }
 
-/* Submit Buttons */
 .submit-button {
     background-color: #232f3e;
     color: white;
