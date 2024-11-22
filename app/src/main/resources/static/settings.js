@@ -25,7 +25,6 @@ $(document).ready(function() {
         $("#change-username-section").show();
     });
 
-    // Handle Change Password Button Click
     $("#change-password").click(function() {
         settingsActions.empty();
 
@@ -47,6 +46,29 @@ $(document).ready(function() {
         settingsActions.append(changePasswordForm);
         $("#change-password-section").show();
     });
+
+    $("#delete-account").click(function () {
+        settingsActions.empty();
+
+        const deleteAccountForm = `
+            <div id="delete-account-section" class="settings-section">
+                <h3>Delete Account</h3>
+                <form id="delete-account-form">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <br>
+                    <button type="submit">Delete Account</button>
+                </form>
+            </div>
+        `;
+
+        settingsActions.append(deleteAccountForm);
+        $("#delete-account-section").show();
+    });
+
 
     $(document).on("submit", "#change-username-form", function(event) {
         event.preventDefault();
@@ -71,7 +93,6 @@ $(document).ready(function() {
         });
     });
 
-    // Handle Change Password Form Submission via AJAX
     $(document).on("submit", "#change-password-form", function(event) {
         event.preventDefault();
 
@@ -93,5 +114,32 @@ $(document).ready(function() {
                 alert("Error changing password: " + error);
             }
         });
+    });
+
+    $(document).on("submit", "#delete-account-form", function (event) {
+        event.preventDefault();
+
+        const username = $("#username").val();
+        const password = $("#password").val();
+
+        if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+            $.ajax({
+                type: "DELETE",
+                url: "/settings/deleteAccount",
+                data: {
+                    username: username,
+                    password: password,
+                },
+                success: function (response) {
+                    alert("Your account has been deleted successfully.");
+                    window.location.href = "/loginEntry";
+                },
+                error: function (xhr, status, error) {
+                    alert("Error deleting account: " + error);
+                },
+            });
+        } else {
+            alert("Account deletion canceled.");
+        }
     });
 });
