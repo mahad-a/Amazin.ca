@@ -11,12 +11,12 @@ $(document).ready(function() {
                 <h3>Change Username</h3>
                 <form id="change-username-form">
                     <label for="old-username">Old Username:</label>
-                    <input type="text" id="old-username" name="old-username" required>
+                    <input type="text" id="old-username" class="text-entry" name="old-username" required>
                     <br>
                     <label for="new-username">New Username:</label>
-                    <input type="text" id="new-username" name="new-username" required>
+                    <input type="text" id="new-username" class="text-entry" name="new-username" required>
                     <br>
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="submit-button">Submit</button>
                 </form>
             </div>
         `;
@@ -33,12 +33,12 @@ $(document).ready(function() {
                 <h3>Change Password</h3>
                 <form id="change-password-form">
                     <label for="old-password">Old Password:</label>
-                    <input type="password" id="old-password" name="old-password" required>
+                    <input type="password" id="old-password" class="text-entry" name="old-password" required>
                     <br>
                     <label for="new-password">New Password:</label>
-                    <input type="password" id="new-password" name="new-password" required>
+                    <input type="password" id="new-password" class="text-entry" name="new-password" required>
                     <br>
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="submit-button">Submit</button>
                 </form>
             </div>
         `;
@@ -55,12 +55,12 @@ $(document).ready(function() {
                 <h3>Delete Account</h3>
                 <form id="delete-account-form">
                     <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
+                    <input type="text" id="username" class="text-entry" name="username" required>
                     <br>
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" class="text-entry" name="password" required>
                     <br>
-                    <button type="submit">Delete Account</button>
+                    <button type="submit" class="submit-button">Delete Account</button>
                 </form>
             </div>
         `;
@@ -86,6 +86,7 @@ $(document).ready(function() {
             success: function(response) {
                 alert("Username changed successfully!");
                 sessionStorage.setItem("username", newUsername);
+                location.reload();
             },
             error: function(xhr, status, error) {
                 alert("Error changing username: " + error);
@@ -109,6 +110,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 alert("Password changed successfully!");
+                location.reload();
             },
             error: function(xhr, status, error) {
                 alert("Error changing password: " + error);

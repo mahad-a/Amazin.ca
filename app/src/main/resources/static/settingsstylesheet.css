@@ -187,3 +187,53 @@ body {
     filter: brightness(0) invert(1);
     /* Makes the icon white */
 }
+
+/* Text Entry Fields */
+.text-entry {
+    width: 25%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-entry:focus {
+    border-color: #febd69;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 189, 105, 0.5);
+}
+
+/* Form Labels for Better Spacing */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Submit Buttons */
+.submit-button {
+    background-color: #232f3e;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #febd69;
+    transform: translateY(-2px);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+    background-color: #f3a847;
+}
