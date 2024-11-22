@@ -19,6 +19,7 @@ public class Book {
     String title;
     String author;
     int ISBNnum;
+    int quantity;
     @Lob
     byte [] coverImage;
 
@@ -128,5 +129,15 @@ public class Book {
      */
     public void setCoverImage(byte[] coverImage) {
         this.coverImage = coverImage;
+    }
+
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+
+    }
+
+    public int getQuantity(){
+        return this.quantity;
+
     }
 }
