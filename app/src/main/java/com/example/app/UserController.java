@@ -82,5 +82,15 @@ public class UserController {
         }
         return null;
     }
-    
+
+    @PostMapping("/verifyPassword")
+    public ResponseEntity<String> verifyPassword(@RequestParam String username, @RequestParam String password) {
+        User user = userRepository.findByUsername(username);
+        if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+            return ResponseEntity.ok("Password verified successfully");
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect username or password");
+    }
+
+
 }
