@@ -27,7 +27,7 @@ $(document).ready(function() {
                 url: `/cart/addToCart?bookID=${bookId}&username=${username}`,
                 type: "POST",
                 success: function(response){
-                    alert("Book added to cart!");
+                    alert(response);
                 },
                 error: function(xhr, status, error){
                     console.log(error);
