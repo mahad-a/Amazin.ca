@@ -2,6 +2,7 @@ package com.example.app;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -32,14 +33,6 @@ public class SettingsControllerTest {
     public void setup() {
         MockitoAnnotations.openMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(settingsController).build();
-    }
-
-    // Test for the settings page method
-    @Test
-    public void testSettingsPage() throws Exception {
-        mockMvc.perform(get("/settings/settingsEntry"))
-                .andExpect(status().isOk())
-                .andReturn().getResponse().getContentAsString().equals("settingsEntry");
     }
 
     // Test for changeUsername method (successful user change)

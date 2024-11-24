@@ -2,7 +2,6 @@ package com.example.app;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -14,15 +13,12 @@ public class HomeControllerTest {
 
     private MockMvc mockMvc;
 
-    @InjectMocks
-    private HomeController homeController;
-
     @BeforeEach
     public void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(homeController).build();
+        // Initialize MockMvc with the HomeController directly
+        mockMvc = MockMvcBuilders.standaloneSetup(new HomeController()).build();
     }
 
-    // Test for the home method
     @Test
     public void testHome() throws Exception {
         mockMvc.perform(get("/"))

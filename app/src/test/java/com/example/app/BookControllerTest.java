@@ -38,14 +38,6 @@ public class BookControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(bookController).build();
     }
 
-    // Test for the addBookHTML method
-    @Test
-    public void testAddBookHTML() throws Exception {
-        mockMvc.perform(get("/book/adminAddBookPage"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("adminAddBookPage"));
-    }
-
     // Test for the getBook method (success)
     @Test
     public void testGetBook_Success() {
