@@ -136,6 +136,7 @@ public class BookController {
         @RequestParam("isbn") int isbn,
         @RequestParam("title") String title,
         @RequestParam("author") String author,
+        @RequestParam("quantity") int quantity,
         @RequestParam(value = "coverImage", required = false) MultipartFile coverImage
     ) {
         Optional<Book> books = bookInventory.findById(id);
@@ -144,6 +145,7 @@ public class BookController {
             book.setISBN(isbn);
             book.setAuthor(author);
             book.setTitle(title);
+            book.setQuantity(quantity);
             try {
                 book.setCoverImage(coverImage.getBytes());
 

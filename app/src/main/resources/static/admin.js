@@ -19,6 +19,10 @@ $(document).ready(function() {
                         <input type="text" id="editAuthor" required>
                     </div>
                     <div>
+                        <label for="editQuantity">Quantity:</label>
+                        <input type="number" id="editQuantity" required>
+                    </div>
+                    <div>
                         <label for="editCoverImage">Cover Image:</label>
                         <input type="file" id="editCoverImage" accept="image/*">
                     </div>
@@ -47,9 +51,10 @@ $(document).ready(function() {
                             <div class="book-details">
                                 <strong>ISBN:</strong> ${book.isbn} <br>
                                 <strong>Title:</strong> ${book.title} <br>
-                                <strong>Author:</strong> ${book.author}
+                                <strong>Author:</strong> ${book.author} <br>
+                                <strong>Quantity:</strong> ${book.quantity}
                                 <button class="delete-btn" onclick="deleteBook(${book.id})">Delete Book</button>
-                                <button class="edit-btn" onclick="openEditModal(${book.id}, '${book.isbn}', '${book.title}', '${book.author}')">Edit Book</button>
+                                <button class="edit-btn" onclick="openEditModal(${book.id}, '${book.isbn}', '${book.title}', '${book.author}', '${book.quantity}')">Edit Book</button>
                             </div>
 
                         </li>`;
@@ -83,11 +88,12 @@ $(document).ready(function() {
         }
     };
 
-    window.openEditModal = function(bookId, isbn, title, author) {
+    window.openEditModal = function(bookId, isbn, title, author, quantity) {
         $("#editBookId").val(bookId);
         $("#editIsbn").val(isbn);
         $("#editTitle").val(title);
         $("#editAuthor").val(author);
+        $("#editQuantity").val(quantity)
         $("#editModal").show();
     }
 
@@ -112,6 +118,7 @@ $(document).ready(function() {
         formData.append("isbn", $("#editIsbn").val());
         formData.append("title", $("#editTitle").val());
         formData.append("author", $("#editAuthor").val());
+        formData.append("quantity", $("#editQuantity").val());
         
         const coverImageFile = $("#editCoverImage")[0].files[0];
         if (coverImageFile) {
@@ -164,8 +171,9 @@ $(document).ready(function() {
                                     <strong>ISBN:</strong> ${book.isbn} <br>
                                     <strong>Title:</strong> ${book.title} <br>
                                     <strong>Author:</strong> ${book.author}
+                                    <strong>Quantity</strong> ${book.quantity}
                                     <button class="delete-btn" onclick="deleteBook(${book.id})">Delete Book</button>
-                                    <button class="edit-btn" onclick="openEditModal(${book.id}, '${book.isbn}', '${book.title}', '${book.author}')">Edit Book</button>
+                                    <button class="edit-btn" onclick="openEditModal(${book.id}, '${book.isbn}', '${book.title}', '${book.author}', '${book.quantity}')">Edit Book</button>
                                 </div>
                             </li>`;
                         $("#bookList").append(bookItem);
