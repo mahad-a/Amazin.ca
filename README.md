@@ -71,6 +71,13 @@ For any issues or questions, please open an issue in the repository or contact t
 - [firaselezzi@cmail.carleton.ca](mailto:firaselezzi@cmail.carleton.ca)
 - [ilyaashussein@cmail.carleton.ca](mailto:ilyaashussein@cmail.carleton.ca)
 
+
+## TODO:
+- Security
+- Payment Methods (ex. Credit cards)
+- Filter/Sort
+- Book Recommedations
+
 ## License
 Copyright 2024 Amazin.ca
 
