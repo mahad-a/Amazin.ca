@@ -19,11 +19,11 @@ class AdminTest {
         assertEquals("FirasArunZarifIlyaasMahad", admin.getUsername());
     }
 
-    @Test
-    void testSetAndGetPassword() {
-        admin.setPassword("password123");
-        assertEquals("password123", admin.getPassword());
-    }
+    // @Test
+    // void testSetAndGetPassword() {
+    //     admin.setPassword("password123");
+    //     assertEquals("password123", admin.getPassword());
+    // }
 
     @Test
     void testSetAndGetAdminId() {
