@@ -34,6 +34,7 @@ public class SettingsController{
         User user = userRepository.findByUsername(oldUsername);
         Admin admin = adminRepository.findByUsername(oldUsername);
         // entity can be both user and admin, so ensure both get changed
+        System.out.println("changing Username");
         if (user != null) {
             user.setUsername(newUsername);
             userRepository.save(user);
@@ -55,6 +56,7 @@ public class SettingsController{
      */
     @PostMapping("/changePassword")
     public ResponseEntity<String> changePassword(@RequestParam String username, @RequestParam String currentPassword, @RequestParam String newPassword) {
+        System.out.println("changing Password");
         User user = userRepository.findByUsername(username);
         Admin admin = adminRepository.findByUsername(username);
         // entity can be both user and admin, so ensure both get changed
@@ -78,6 +80,7 @@ public class SettingsController{
      */
     @DeleteMapping("/deleteAccount")
     public ResponseEntity<String> deleteAccount(@RequestParam String username, @RequestParam String password) {
+        System.out.println("delting Account");
         User user = userRepository.findByUsername(username);
         Admin admin = adminRepository.findByUsername(username);
         // entity can be both user and admin, so ensure both get changed
