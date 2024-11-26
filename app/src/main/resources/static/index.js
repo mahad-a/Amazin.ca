@@ -100,26 +100,41 @@ $(document).ready(function() {
  
 
 
-    $("#searchForm").submit(function(event){
-        event.preventDefault();
-        const query = $("#search").val();
+    const debounce = (func, delay) => {
+        let timeout;
+        return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), delay);
+        };
+    };
 
-        if (query == ""){
+    // Function to fetch books based on the query
+    function searchBooks(query) {
+        if (query === "") {
+            // If input is empty, fetch all books
             getAll();
+        } else {
+            $.ajax({
+                url: `/book/search?query=${query}`,
+                type: "GET",
+                success: function (response) {
+                    appendBooks(response); // Function to display books in the UI
+                },
+                error: function (xhr, status, error) {
+                    alert("Error searching books: " + error);
+                }
+            });
         }
+    }
 
-        $.ajax({
-            url: `/book/search?query=${query}`,
-            type: "GET",
-            success: function(response) {
-                appendBooks(response);
-            },
-            error: function(xhr, status, error) {
-                alert("Error searching books: " + error);
-            }
-        });
+    // Call getAll to load all books initially
+    getAll();
 
-    });
+    // Listen for input changes on the search box
+    $("#search").on("input", debounce(function () {
+        const query = $(this).val(); // Get the search input value
+        searchBooks(query);          // Trigger search
+    }, 300)); // Debounce delay of 300ms
 
 
     function sortFunction(sortOption){

@@ -178,13 +178,14 @@ public class BookController {
         List<Book> validBooks;
         try {
             
-            Integer isbnnum = Integer.parseInt(query);
+            int isbnnum = Integer.parseInt(query);
             validBooks = bookInventory.findByISBNnum(isbnnum);
+            return ResponseEntity.ok(validBooks);
         } catch (NumberFormatException e) {
            
             validBooks = bookInventory.findByTitleContainingOrAuthorContaining(query, query);
+            return ResponseEntity.ok(validBooks);
         }
-        return ResponseEntity.ok(validBooks);
     }
 
   
