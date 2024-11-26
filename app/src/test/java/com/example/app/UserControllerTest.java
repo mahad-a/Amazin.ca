@@ -44,7 +44,7 @@ public class UserControllerTest {
         User user = new User("newUser", "password123");
         when(userRepository.save(any(User.class))).thenReturn(user);
 
-        ResponseEntity<User> response = userController.register("newUser", "password123");
+        ResponseEntity<Boolean> response = userController.register("newUser", "password123");
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(user, response.getBody());
@@ -55,7 +55,7 @@ public class UserControllerTest {
     public void testRegister_Failure() {
         when(userRepository.save(any(User.class))).thenThrow(new RuntimeException());
 
-        ResponseEntity<User> response = userController.register("newUser", "password123");
+        ResponseEntity<Boolean> response = userController.register("newUser", "password123");
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }

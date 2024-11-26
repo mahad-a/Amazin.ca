@@ -59,14 +59,18 @@ public class AdminController {
      * @return
      */
     @PostMapping("/register")
-    public ResponseEntity<Admin> register(@RequestParam String username, @RequestParam String password){
+    public ResponseEntity<Boolean> register(@RequestParam String username, @RequestParam String password){
         try{
             
-            Admin newAdmin = new Admin(username, password);
-            Admin savedAdmin = adminRepository.save(newAdmin);
-            System.out.println(username + " registered!");
+            Admin newAdmin = new Admin();
+            if (newAdmin.setPassword(password)){
+                System.out.println(username + " registered!");
+                adminRepository.save(newAdmin);
+                return ResponseEntity.ok(true);
+            }
+
+            return ResponseEntity.ok(false);
             
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedAdmin);
         } catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

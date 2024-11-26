@@ -34,16 +34,27 @@ public class UserController {
      * @return ResponseEntity with the created user and HTTP status
      */
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestParam String username, @RequestParam String password){
+    public ResponseEntity<Boolean> register(@RequestParam String username, @RequestParam String password){
         try{
-            // create new user and save it
-            User newUser = new User(username, password);
-            User savedUser = userRepository.save(newUser);
-            System.out.println(username + " registered!");
-            // return ResponseEntity with status
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+            
+            User newUser = new User();
+            if (newUser.setPassword(password)){
+                newUser.setUsername(username);
+                User savedUser = userRepository.save(newUser);
+                System.out.println(username + " registered!");
+                userRepository.save(savedUser);
+                return ResponseEntity.ok(true);
+                
+            }
+            
+            
+          System.out.println("Use LUDS...");
+          return ResponseEntity.ok(false);
+            
+            
         } catch(Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            System.out.println("ERROR");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 

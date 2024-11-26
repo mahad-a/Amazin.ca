@@ -81,7 +81,7 @@ public class AdminControllerTest {
         Admin admin = new Admin("newUser", "password123");
         when(adminRepository.save(any(Admin.class))).thenReturn(admin);
 
-        ResponseEntity<Admin> response = adminController.register("newUser", "password123");
+        ResponseEntity<Boolean> response = adminController.register("newUser", "password123");
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(admin, response.getBody());
@@ -92,7 +92,7 @@ public class AdminControllerTest {
     public void testRegister_Failure() {
         when(adminRepository.save(any(Admin.class))).thenThrow(new RuntimeException());
 
-        ResponseEntity<Admin> response = adminController.register("newUser", "password123");
+        ResponseEntity<Boolean> response = adminController.register("newUser", "password123");
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertEquals(null, response.getBody());

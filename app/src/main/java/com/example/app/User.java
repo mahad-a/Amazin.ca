@@ -2,6 +2,7 @@ package com.example.app;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -26,6 +27,8 @@ public class User {
 
     private String username;
     private String password;
+
+    
     
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
@@ -104,13 +107,40 @@ public class User {
         return this.password;
     }
 
+    public boolean registrationValidation(String password) {
+        // Check if username or password is null or empty
+        if (
+            password == null || password.trim().isEmpty()) {
+            return false;
+        }
+    
+        // LUDS Validation Criteria
+        boolean hasLength = password.length() >= 8; // Minimum 8 characters
+        boolean hasUppercase = password.matches(".*[A-Z].*");
+        boolean hasLowercase = password.matches(".*[a-z].*");
+        boolean hasDigit = password.matches(".*\\d.*");
+        boolean hasSpecialChar = password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?].*");
+    
+        // Return true only if ALL criteria are met
+        return hasLength && 
+               hasUppercase && 
+               hasLowercase && 
+               hasDigit && 
+               hasSpecialChar;
+    }
+
     /**
      * Sets the password of the user.
      *
      * @param password the password to set
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public boolean setPassword(String password) {
+        if (registrationValidation(password)){
+            this.password = password;
+            return true;
+        }
+        return false;
+       
     }
 
     public void setCart(Cart cart){
