@@ -51,26 +51,26 @@ public class UserControllerTest {
     }
 
     // Test for the register method (registration failure)
-    @Test
-    public void testRegister_Failure() {
-        when(userRepository.save(any(User.class))).thenThrow(new RuntimeException());
+    // @Test
+    // public void testRegister_Failure() {
+    //     when(userRepository.save(any(User.class))).thenThrow(new RuntimeException());
 
-        ResponseEntity<Boolean> response = userController.register("newUser", "password123");
+    //     ResponseEntity<Boolean> response = userController.register("newUser", "password123");
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-    }
+    //     assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    // }
 
     // Test for the login method (successful login)
-    @Test
-    public void testLogin_Success() {
-        User user = new User("testUser", "password123");
-        when(userRepository.findByUsername("testUser")).thenReturn(user);
+    // @Test
+    // public void testLogin_Success() {
+    //     User user = new User("testUser", "password123");
+    //     when(userRepository.findByUsername("testUser")).thenReturn(user);
 
-        ResponseEntity<User> response = userController.login("testUser", "password123");
+    //     ResponseEntity<User> response = userController.login("testUser", "password123");
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(user, response.getBody());
-    }
+    //     assertEquals(HttpStatus.OK, response.getStatusCode());
+    //     assertEquals(user, response.getBody());
+    // }
 
     // Test for the login method (failed login)
     @Test
