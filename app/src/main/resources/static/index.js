@@ -32,12 +32,16 @@ $(document).ready(function() {
         });
 
         $(document).on("click", "#logoutButton", function(){
-            $("#logoutButton").remove();
-            $("#settingsButton").remove();
-            $("#cartButton").remove();
-            $("#header").append(
-                `<h2 id = "login"><a href = "/loginEntry">Login</a></h2>`
-            )
+
+            if(confirm("Are you sure you want to logout?")){
+
+                $("#logoutButton").remove();
+                $("#settingsButton").remove();
+                $("#cartButton").remove();
+                $("#header").append(
+                    `<h2 id = "login"><a href = "/loginEntry">Login</a></h2>`
+                )
+            }
         });
 
         
