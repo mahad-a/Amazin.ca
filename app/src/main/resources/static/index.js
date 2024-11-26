@@ -79,23 +79,34 @@ $(document).ready(function() {
         });
     }
 
-    $.ajax({
-        url: "/book/getAll",
-        type: "GET",
-        success: function(response) {
-            appendBooks(response)
-        },
-        error: function(xhr, status, error) {
-            alert("ERROR");
-            console.log(error);
-            console.log(status);
-        }
-    });
+    function getAll(){
+        $.ajax({
+            url: "/book/getAll",
+            type: "GET",
+            success: function(response) {
+                appendBooks(response)
+            },
+            error: function(xhr, status, error) {
+                alert("ERROR");
+                console.log(error);
+                console.log(status);
+            }
+        });
+    }
+
+
+    getAll();
+
+ 
 
 
     $("#searchForm").submit(function(event){
         event.preventDefault();
         const query = $("#search").val();
+
+        if (query == ""){
+            getAll();
+        }
 
         $.ajax({
             url: `/book/search?query=${query}`,
