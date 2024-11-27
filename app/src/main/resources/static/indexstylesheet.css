@@ -12,6 +12,9 @@
     align-items: center;
     padding: 5px 25px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;  
+    top: 0;  
+    z-index: 1000; 
   }
 
   #titleContainer {
@@ -272,13 +275,6 @@
     background-color: #f3a847;
     transform: translateY(-1px);
   }
-  /* Sort and Filter Styles */
-  #subheaderbar label {
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-      margin-right: 10px;
-      font-weight: bold;
-  }
 
   #sort, #filter {
       appearance: none;
@@ -334,6 +330,9 @@
     align-items: center;
     padding: 0 2rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top : 97px;
+    z-index: 999;
   }
   #subheaderbar label {
     color: #fff;
