@@ -287,7 +287,7 @@
     transform: translateY(-1px);
   }
 
-  #sort, #filter {
+  #sort {
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -306,18 +306,18 @@
       padding-right: 30px;
   }
 
-  #sort:hover, #filter:hover {
+  #sort:hover{
       background-color: #f3a847;
       transform: translateY(-1px);
   }
 
-  #sort:focus, #filter:focus {
+  #sort:focus{
       outline: none;
       box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.5);
   }
 
   /* Dropdown Option Styling */
-  #sort option, #filter option {
+  #sort option{
       background-color: #fff;
       color: #111;
       padding: 10px;
@@ -350,41 +350,6 @@
     font-family: 'Arial', sans-serif;
     margin-right: 10px;
     font-weight: bold;
-  }
-
-  #sort, #filter {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: #febd69;
-    color: #111;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-left: 10px; /* Added to create space between labels and dropdowns */
-    transition: all 0.2s ease;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='%23111' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 8px center;
-    padding-right: 30px;
-  }
-
-  #sort:hover, #filter:hover {
-    background-color: #f3a847;
-    transform: translateY(-1px);
-  }
-
-  #sort:focus, #filter:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.5);
-  }
-
-  #sort option, #filter option {
-    background-color: #fff;
-    color: #111;
-    padding: 10px;
   }
 
   /* Responsive Adjustments */

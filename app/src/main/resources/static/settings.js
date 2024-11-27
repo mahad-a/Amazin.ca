@@ -74,6 +74,16 @@ $(document).ready(function() {
     });
 
 
+    $("#home").on("click", function(){
+
+        if (sessionStorage.getItem("username") == null){
+            window.location.href = "/admin/home";
+        }
+        else{
+            window.location.href = "/";
+        }
+    });
+
     // process the passed information depending what submit is selected
     $(document).on("submit", "#change-username-form", function(event) {
         event.preventDefault();

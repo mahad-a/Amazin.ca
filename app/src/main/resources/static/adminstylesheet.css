@@ -12,6 +12,9 @@ body {
     align-items: center;
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top:0;
+    z-index: 1000;
 }
 
 #titleContainer {
@@ -29,20 +32,19 @@ body {
     text-decoration: none;
 }
 
-/* Search Container Styles */
 #searchContainer {
     flex: 1;
     max-width: 1000px;
     margin: 0 2rem;
-}
+  }
 
-#searchForm {
+  #searchForm {
     display: flex;
     align-items: center;
     width: 100%;
-}
+  }
 
-#search {
+  #search {
     flex: 1;
     color: #333;
     background-color: white;
@@ -51,7 +53,30 @@ body {
     border-radius: 4px 0 0 4px;
     font-size: 1rem;
     transition: all 0.3s ease;
-}
+  }
+
+  #search:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.5);
+  }
+
+  #search::placeholder {
+    color: #666;
+  }
+
+  #searchButton {
+    background-color: #febd69;
+    border: none;
+    cursor: pointer;
+    padding: 18.5px 15px;
+    border-radius: 0 4px 4px 0;
+    transition: all 0.2s ease;
+    font-weight: bold;
+  }
+
+  #searchButton:hover {
+    background-color: #f3a847;
+  }
 
 #search:focus {
     outline: none;
@@ -89,6 +114,63 @@ body {
     transform: translateY(-1px);
 }
 
+#logoutButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #logoutButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .logout-icon{
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+  #settingsButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#settingsButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Remove hover styles from the child 'a' element */
+#settingsButton a {
+    background: none;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#settingsButton a:hover {
+    /* No hover styling needed here */
+}
+
+
+  
+
 /* Subheader Bar */
 #subheaderbar {
     background-color: #232f3e;
@@ -98,13 +180,22 @@ body {
     align-items: center;
     padding: 0 2rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    position: sticky;
+    top : 98px;
+    z-index: 999;
 
+}
+#bookList{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 0;
+  }
 /* Book Items */
 .book-item {
     border: 1px solid #ddd;
-    padding: 20px;
-    margin: 15px;
+    padding: 10px;
+    margin: 5px;
     border-radius: 4px;
     display: flex;
     align-items: start;
@@ -141,7 +232,6 @@ body {
 }
 
 .book-details {
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -155,6 +245,8 @@ body {
     background-color: #ff4444;
     color: white;
     border: none;
+    width: 100px;
+    align-items: end;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -170,8 +262,10 @@ body {
 .edit-btn {
     margin-top: 10px;
     padding: 8px 16px;
+    align-items: end;
     background-color: #232f3e;
     color: white;
+    width: 100px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -289,4 +383,109 @@ body {
         align-items: center;
         text-align: center;
     }
+}
+
+
+#sort {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #febd69;
+    color: #111;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 20px;
+    transition: all 0.2s ease;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23111' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 30px;
+}
+
+#sort:hover, #filter:hover {
+    background-color: #f3a847;
+    transform: translateY(-1px);
+}
+
+#sort:focus, #filter:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.5);
+}
+
+/* Dropdown Option Styling */
+#sort option, #filter option {
+    background-color: #fff;
+    color: #111;
+    padding: 10px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #sort, #filter {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        margin-right: 10px;
+    }
+}
+
+/* Subheader Bar */
+#subheaderbar {
+  background-color: #3a4a5c;
+  height: 50px;
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  padding: 0 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top : 98px;
+  z-index: 999;
+}
+#subheaderbar label {
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  #subheaderbar {
+      padding: 0 1rem;
+  }
+
+  #sort, #filter {
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      margin-left: 5px;
+  }
+}
+
+
+#bookRecommendations{
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  margin-right: 10px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#bookRecommendations a{
+  color: #fff; 
+  font-family: 'Arial', sans-serif;
+  margin-right: 10px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#bookRecommendations a:hover{
+  color: #ffffffd3;
+  font-family: 'Arial', sans-serif;
+  margin-right: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.2);
 }
