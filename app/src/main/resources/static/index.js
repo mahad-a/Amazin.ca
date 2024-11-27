@@ -16,6 +16,10 @@ $(document).ready(function() {
                 <img src="/Logout.png" alt="Log Out" class="logout-icon">
             </button>`
         )
+
+        $("#subheaderbar").append(
+            `<a href = "/book/recommendations" id=bookRecommendations>Book recommendation</a>`
+        )
         $(document).on("click", ".add-to-cart", function(){
             
             const username = sessionStorage.getItem("username");
@@ -44,6 +48,7 @@ $(document).ready(function() {
                 $("#logoutButton").remove();
                 $("#settingsButton").remove();
                 $("#cartButton").remove();
+                $("#bookRecommendations").remove();
                 $("#header").append(
                     `<h2 id = "login"><a href = "/loginEntry">Login</a></h2>`
                 )
