@@ -17,6 +17,12 @@ $(document).ready(function() {
             </button>`
         )
         $(document).on("click", ".add-to-cart", function(){
+            
+            const username = sessionStorage.getItem("username");
+            if (!username) {
+                alert("Please log in to add items to cart");
+                return;
+            }
             const bookId = $(this).data('book-id');
             $.ajax({
                 url: `/cart/addToCart?bookID=${bookId}&username=${username}`,
@@ -34,7 +40,7 @@ $(document).ready(function() {
         $(document).on("click", "#logoutButton", function(){
 
             if(confirm("Are you sure you want to logout?")){
-
+                sessionStorage.removeItem("username");
                 $("#logoutButton").remove();
                 $("#settingsButton").remove();
                 $("#cartButton").remove();
