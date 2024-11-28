@@ -102,10 +102,25 @@ $(document).ready(function() {
         $("#editModal").hide();
     });
 
-    // Close modal when clicking outside
+    
     $(window).click(function(event) {
         if ($(event.target).is("#editModal")) {
             $("#editModal").hide();
+        }
+    });
+
+
+    $(document).on("click", "#logoutButton", function(){
+
+        if(confirm("Are you sure you want to logout?")){
+            sessionStorage.removeItem("username");
+            $("#logoutButton").remove();
+            $("#settingsButton").remove();
+            $("#cartButton").remove();
+            $("#bookRecommendations").remove();
+            $("#header").append(
+                `<h2 id = "login"><a href = "/loginEntry">Login</a></h2>`
+            )
         }
     });
 
