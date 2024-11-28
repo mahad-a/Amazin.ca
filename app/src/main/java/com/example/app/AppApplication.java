@@ -70,6 +70,22 @@ public class AppApplication {
 			darkMatter.setCoverImageOnInstantiation(darkMatter, "static/BookCovers/DarkMatter.jpg");
 			darkMatter.setQuantity(6);
 			bookInventory.save(darkMatter);
+
+			Book neverLie = new Book (12312, "Never Lie", "Freida McFadden");
+			neverLie.setCoverImageOnInstantiation(neverLie, "static/BookCovers/NeverLie.jpg");
+			neverLie.setQuantity(10);
+			bookInventory.save(neverLie);
+			
+			Book goneGirl = new Book(78438, "Gone Girl", "Gillian Flynn");
+			goneGirl.setCoverImageOnInstantiation(goneGirl, "static/BookCovers/GoneGirl.jpg");
+			goneGirl.setQuantity(15);
+			bookInventory.save(goneGirl);
+
+			Book theCoworker = new Book(90212, "The Coworker", "Freida McFadden");
+			theCoworker.setCoverImageOnInstantiation(theCoworker, "static/BookCovers/TheCoworker.jpg");
+			theCoworker.setQuantity(8);
+			bookInventory.save(theCoworker);
+
 		};
 	}
 

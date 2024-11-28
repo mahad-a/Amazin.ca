@@ -17,9 +17,42 @@ $(document).ready(function() {
             </button>`
         )
 
-        $("#subheaderbar").append(
-            `<a href = "/book/recommendations" id=bookRecommendations>Book recommendation</a>`
-        )
+
+
+        $.ajax({
+            url : `user/bookrecommendations?username=${sessionStorage.getItem("username")}`,
+            type: "GET",
+            success : function(response){
+                response.forEach(function(book) {
+                    const coverImage = book.coverImage ? `data:image/jpeg;base64,${book.coverImage}` : '/images/default-cover.jpg';
+        
+                    const bookHtml = `
+                        <div class="book-item">
+                            <div class="image-container">
+                                <img src="${coverImage}" alt="Cover of ${book.title}" class="book-cover">
+                            </div>
+                            <div class="book-details">
+                                <strong>Title:</strong> ${book.title} <br>
+                                <strong>Author:</strong> ${book.author} <br>
+                                <strong>ISBN:</strong> ${book.ISBNnum} <br>
+                                <strong>Quantity:</strong> ${book.quantity} <br>
+                            </div>
+                            <button class="add-to-cart" data-book-id="${book.id}">
+                                Add to Cart
+                            </button>
+                        </div>
+                    `;
+                    
+                    
+                    $("#bookRecommendations").append(bookHtml);
+                });
+
+            },
+            error : function(xhr, status, error){
+
+            }
+        })
+ 
         $(document).on("click", ".add-to-cart", function(){
             
             const username = sessionStorage.getItem("username");
