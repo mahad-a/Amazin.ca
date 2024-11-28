@@ -9,7 +9,7 @@ $(document).ready(function() {
             </a>
             
             <a href="/settings/settingsEntry" id="settingsButton"> 
-                <img src="/Settings.png" alt="Settings"  style="width: 60px; height: 60px;">
+                <img src="/Settings.png" alt="Settings" class="settings-icon">
             </a>
             
             <button id="logoutButton"> 

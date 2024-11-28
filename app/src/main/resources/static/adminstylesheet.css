@@ -6,7 +6,7 @@ body {
 
 /* Header Styles */
 #header {
-    background-color: #232f3e;
+    background-color: #117876;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,20 +17,18 @@ body {
     z-index: 1000;
 }
 
+#logo {
+    width: 160px;
+    height: 80px;
+  }
+
 #titleContainer {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-#admin {
-    margin-left: 10px;
-    color: #fff;
-    font-family: 'Arial Black', Arial, sans-serif;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-}
+
 
 #searchContainer {
     flex: 1;
@@ -98,7 +96,7 @@ body {
 }
 
 /* Navigation Links */
-#addBook a, #home a {
+#addBook a {
     font-family: 'Arial Black', Arial, sans-serif;
     color: #fff;
     text-decoration: none;
@@ -108,13 +106,21 @@ body {
     display: inline-block;
 }
 
-#addBook a:hover, #home a:hover {
+#addBook a:hover{
     color: #232f3e;
     background-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-1px);
 }
 
-#logoutButton {
+
+  .logout-icon{
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+
+  #logoutButton {
     background: none;
     border: none;
     cursor: pointer;
@@ -131,10 +137,26 @@ body {
     transform: translateY(-1px);
   }
 
-  .logout-icon{
-    width: 70px;
-    height: 70px;
+
+  #logoutButton a {
+    background: none;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .settings-icon{
+    width: 60px;
+    height: 60px;
     object-fit: contain;
+  }
+  .add-icon{
+    width:50px;
+    height: 50px;
+    object-fit :contain;
     filter: brightness(0) invert(1);
   }
   #settingsButton {
@@ -171,20 +193,7 @@ body {
 
   
 
-/* Subheader Bar */
-#subheaderbar {
-    background-color: #232f3e;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top : 98px;
-    z-index: 999;
 
-}
 #bookList{
     list-style-type: none;
     padding: 0;
@@ -433,7 +442,7 @@ body {
 
 /* Subheader Bar */
 #subheaderbar {
-  background-color: #3a4a5c;
+  background-color: #3b9b99;
   height: 50px;
   display: flex;
   justify-content: flex-start; 
@@ -441,7 +450,7 @@ body {
   padding: 0 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
-  top : 98px;
+  top : 130px;
   z-index: 999;
 }
 #subheaderbar label {

@@ -44,7 +44,9 @@ public class AdminController {
      */
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
-        Admin admin = adminRepository.findByUsername(username);
+        String strippedUsername = username.strip();
+        System.out.println(strippedUsername);
+        Admin admin = adminRepository.findByUsername(strippedUsername);
     
         if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
             System.out.println("Login Success!");
@@ -61,6 +63,7 @@ public class AdminController {
     @PostMapping("/register")
     public ResponseEntity<Boolean> register(@RequestParam String username, @RequestParam String password){
         try{
+            username.strip();
             
             Admin newAdmin = new Admin();
             if (newAdmin.setPassword(password)){

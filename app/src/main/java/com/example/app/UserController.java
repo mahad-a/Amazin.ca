@@ -72,8 +72,9 @@ public class UserController {
      */
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestParam String username, @RequestParam String password) {
-        User user = userRepository.findByUsername(username);
-
+        String strippedUsername = username.strip();
+        User user = userRepository.findByUsername(strippedUsername);
+        System.out.println(strippedUsername);
         if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
             System.out.println("Login Success!");
             return ResponseEntity.ok(user);
