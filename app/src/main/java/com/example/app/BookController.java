@@ -182,8 +182,8 @@ public class BookController {
             validBooks = bookInventory.findByISBNnum(isbnnum);
             return ResponseEntity.ok(validBooks);
         } catch (NumberFormatException e) {
-           
-            validBooks = bookInventory.findByTitleContainingOrAuthorContaining(query, query);
+            
+            validBooks = bookInventory.findByTitleContainingOrAuthorContainingIgnoreCase(query, query);
             return ResponseEntity.ok(validBooks);
         }
     }
