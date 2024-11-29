@@ -62,3 +62,16 @@ body {
 #adminLoginForm button[type="submit"]:hover {
   background-color: #f3a847;
 }
+#error {
+  display: none; /* Hidden by default */
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 0.5rem;
+  border-radius: 4px;
+  text-align: center;
+  width: 100%;
+}

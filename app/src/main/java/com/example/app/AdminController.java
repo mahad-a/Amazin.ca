@@ -44,10 +44,13 @@ public class AdminController {
      */
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
-        Admin admin = adminRepository.findByUsername(username);
+        String strippedUsername = username.strip();
+        System.out.println(strippedUsername);
+        Admin admin = adminRepository.findByUsername(strippedUsername);
     
         if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
             System.out.println("Login Success!");
+            adminRepository.save(admin);
             return ResponseEntity.ok("Login successful!");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials.");
@@ -59,14 +62,19 @@ public class AdminController {
      * @return
      */
     @PostMapping("/register")
-    public ResponseEntity<Admin> register(@RequestParam String username, @RequestParam String password){
+    public ResponseEntity<Boolean> register(@RequestParam String username, @RequestParam String password){
         try{
+            username.strip();
             
-            Admin newAdmin = new Admin(username, password);
-            Admin savedAdmin = adminRepository.save(newAdmin);
-            System.out.println(username + " registered!");
+            Admin newAdmin = new Admin();
+            if (newAdmin.setPassword(password)){
+                System.out.println(username + " registered!");
+                adminRepository.save(newAdmin);
+                return ResponseEntity.ok(true);
+            }
+
+            return ResponseEntity.ok(false);
             
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedAdmin);
         } catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

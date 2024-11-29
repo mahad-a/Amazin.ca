@@ -1,10 +1,11 @@
 $(document).ready(function() {
-    const settingsActions = $("#settings-actions");
+    const settingsActions = $("#actions-section");
     const username = sessionStorage.getItem("username");
     console.log("Username from sessionStorage:", username); // show the current logged in username
 
     // update page with form to change username
     $("#change-username").click(function() {
+        console.log("Changing Username!");
         settingsActions.empty(); // ensure page is empty and clear
 
         const changeUsernameForm = `
@@ -72,6 +73,16 @@ $(document).ready(function() {
         $("#delete-account-section").show(); // ensure page is viewable
     });
 
+
+    $("#home").on("click", function(){
+
+        if (sessionStorage.getItem("username") == null){
+            window.location.href = "/admin/home";
+        }
+        else{
+            window.location.href = "/";
+        }
+    });
 
     // process the passed information depending what submit is selected
     $(document).on("submit", "#change-username-form", function(event) {

@@ -24,6 +24,11 @@ $(document).ready(function(){
             error: function(xhr, status, error){
                 console.log("Login failed.");
                 console.log(error);
+                
+                $("#error").remove();
+                $("#adminLoginForm").append(
+                    `<label id="error"><span>Whoops! Wrong username or password.</span></label>`
+                )
             }
         });
     });

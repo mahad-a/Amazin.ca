@@ -39,14 +39,41 @@ public class Admin {
     public String getPassword() {
         return this.password;
     }
+    public boolean registrationValidation(String password) {
+        // Check if username or password is null or empty
+        if (
+            password == null || password.trim().isEmpty()) {
+            return false;
+        }
     
+        // LUDS Validation Criteria
+        boolean hasLength = password.length() >= 8; // Minimum 8 characters
+        boolean hasUppercase = password.matches(".*[A-Z].*");
+        boolean hasLowercase = password.matches(".*[a-z].*");
+        boolean hasDigit = password.matches(".*\\d.*");
+        boolean hasSpecialChar = password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?].*");
+    
+        // Return true only if ALL criteria are met
+        return hasLength && 
+               hasUppercase && 
+               hasLowercase && 
+               hasDigit && 
+               hasSpecialChar;
+    }
     
     /** 
      * set Admin Password
      * @param password
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public boolean setPassword(String password) {
+        if (registrationValidation(password)){
+            this.password = password;
+            return true;
+        }
+        else{
+            System.out.println("Requires LUDS...");
+            return false;
+        }
     }
 
     

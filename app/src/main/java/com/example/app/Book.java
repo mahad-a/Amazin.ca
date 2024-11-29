@@ -1,5 +1,7 @@
 package com.example.app;
 
+import java.io.IOException;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -139,5 +141,15 @@ public class Book {
     public int getQuantity(){
         return this.quantity;
 
+    }
+
+
+    public void setCoverImageOnInstantiation(Book book, String bookCoverPath){
+        try {
+            byte[] coverImage = getClass().getClassLoader().getResourceAsStream(bookCoverPath).readAllBytes();
+            book.setCoverImage(coverImage);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
     }
 }

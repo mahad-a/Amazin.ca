@@ -1,5 +1,10 @@
 package com.example.app;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +25,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private BookInventory bookInventory;
+
     /**
      * Default constructor.
      */
@@ -34,16 +42,27 @@ public class UserController {
      * @return ResponseEntity with the created user and HTTP status
      */
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestParam String username, @RequestParam String password){
+    public ResponseEntity<Boolean> register(@RequestParam String username, @RequestParam String password){
         try{
-            // create new user and save it
-            User newUser = new User(username, password);
-            User savedUser = userRepository.save(newUser);
-            System.out.println(username + " registered!");
-            // return ResponseEntity with status
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+            
+            User newUser = new User();
+            if (newUser.setPassword(password)){
+                newUser.setUsername(username);
+                User savedUser = userRepository.save(newUser);
+                System.out.println(username + " registered!");
+                userRepository.save(savedUser);
+                return ResponseEntity.ok(true);
+                
+            }
+            
+            
+          System.out.println("Use LUDS...");
+          return ResponseEntity.ok(false);
+            
+            
         } catch(Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            System.out.println("ERROR");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
@@ -61,8 +80,8 @@ public class UserController {
      */
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestParam String username, @RequestParam String password) {
+        
         User user = userRepository.findByUsername(username);
-
         if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
             System.out.println("Login Success!");
             return ResponseEntity.ok(user);
@@ -98,5 +117,26 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect username or password");
     }
 
+
+    @GetMapping("/bookrecommendations")
+    public ResponseEntity<List<Book>> recommendedBooks(@RequestParam String username) {
+        User user = userRepository.findByUsername(username);
+
+        List<Book> userBooks = user.getCart().getBooks();
+        Set<String> authors = new HashSet<>();
+        for (Book book : userBooks) {
+            authors.add(book.getAuthor());
+        }
+        System.out.println("authours" + authors);
+        List<Book> recommendedBooks = bookInventory.findBooksByAuthorIn(authors);
+        System.out.println("Recommended Books: " + recommendedBooks);
+        recommendedBooks.removeAll(userBooks);
+
+        
+
+        return ResponseEntity.ok(recommendedBooks);
+       
+        
+    }
 
 }

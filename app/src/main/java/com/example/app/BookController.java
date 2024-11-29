@@ -1,6 +1,8 @@
 package com.example.app;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -9,6 +11,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -131,11 +134,12 @@ public class BookController {
      */
 
     @PostMapping("/update")
-    public ResponseEntity<String> postMethodName(
+    public ResponseEntity<String> updateBook(
         @RequestParam("id") Long id,
         @RequestParam("isbn") int isbn,
         @RequestParam("title") String title,
         @RequestParam("author") String author,
+        @RequestParam("quantity") int quantity,
         @RequestParam(value = "coverImage", required = false) MultipartFile coverImage
     ) {
         Optional<Book> books = bookInventory.findById(id);
@@ -144,6 +148,7 @@ public class BookController {
             book.setISBN(isbn);
             book.setAuthor(author);
             book.setTitle(title);
+            book.setQuantity(quantity);
             try {
                 book.setCoverImage(coverImage.getBytes());
 
@@ -174,12 +179,74 @@ public class BookController {
         List<Book> validBooks;
         try {
             
-            Integer isbnnum = Integer.parseInt(query);
+            int isbnnum = Integer.parseInt(query);
             validBooks = bookInventory.findByISBNnum(isbnnum);
+            return ResponseEntity.ok(validBooks);
         } catch (NumberFormatException e) {
-           
-            validBooks = bookInventory.findByTitleContainingOrAuthorContaining(query, query);
+            
+            validBooks = bookInventory.findByTitleContainingOrAuthorContainingIgnoreCase(query, query);
+            return ResponseEntity.ok(validBooks);
         }
-        return ResponseEntity.ok(validBooks);
     }
+
+  
+    @GetMapping("/sort")
+    public ResponseEntity<List<Book>> sort(@RequestParam String sortBy) {
+        System.out.println("This is the received request: " + sortBy);
+        
+        switch (sortBy){
+
+            case "title A-Z":
+            try {
+                List<Book> books = StreamSupport.stream(bookInventory.findAll().spliterator(), false).collect(Collectors.toList());
+                books.sort(Comparator.comparing(Book::getTitle)); 
+                System.out.println("Sorting by Title A-Z");
+                return ResponseEntity.ok(books);
+            } catch (Exception e) {
+                System.out.println("Failed to retrieve and sort books.");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+            case "title Z-A":
+            try{
+                List<Book> books = StreamSupport.stream(bookInventory.findAll().spliterator(), false).collect(Collectors.toList());
+                books.sort(Comparator.comparing(Book::getTitle).reversed());
+                return ResponseEntity.ok(books);
+             
+            }catch (Exception e){
+                System.out.println(e);
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+
+            case "authour A-Z":
+            try{
+                List<Book> books = StreamSupport.stream(bookInventory.findAll().spliterator(), false).collect(Collectors.toList());
+                books.sort(Comparator.comparing(Book::getAuthor));
+                return ResponseEntity.ok(books);
+
+            }
+            catch(Exception e){
+                System.out.println(e);
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+
+            case "authour Z-A":
+            try{
+                List<Book> books = StreamSupport.stream(bookInventory.findAll().spliterator(), false).collect(Collectors.toList());
+                books.sort(Comparator.comparing(Book::getAuthor).reversed());
+                return ResponseEntity.ok(books);
+
+            }
+            catch(Exception e){
+                System.out.println(e);
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    
+    }
+    
+    
+    
 }

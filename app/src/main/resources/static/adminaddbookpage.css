@@ -7,13 +7,18 @@ body {
 
 
 #header {
-    background-color: #232f3e; 
+    background-color: #117876; 
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+#logo {
+    width: 160px;
+    height: 90px;
+  }
 
 #adminAddPage {
     margin-left: 10px;
@@ -76,7 +81,7 @@ body {
 
 
 #subheaderbar {
-    background-color: #37475a; /* Darker gray Amazon subheader */
+    background-color: #3b9b99; /* Darker gray Amazon subheader */
     height: 50px;
     display: flex;
     justify-content: space-between;
@@ -174,3 +179,4 @@ button[type="submit"]:hover {
         padding: 10px 15px;
     }
 }
+

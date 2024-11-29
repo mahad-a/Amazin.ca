@@ -2,16 +2,11 @@ package com.example.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
 
 @Controller
 @RequestMapping("/cart")
@@ -19,10 +14,11 @@ public class CartController {
     @Autowired
     private BookInventory bookInventory;
     @Autowired
+    private Cart cart;
+    @Autowired
     private CartRepository cartRepository;
-    @Autowired 
+    @Autowired
     private UserRepository userRepository;
-    
 
     public CartController(){
         // empty constructor for now
@@ -55,7 +51,6 @@ public class CartController {
         }
         System.out.println("User not found");
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        
     }
 
     /**
@@ -81,7 +76,7 @@ public class CartController {
 
                         int count = 0;
                         for (Book book_cart : user.getCart().getBooks()){
-                            
+
                             if (book_cart.title.equals(foundBook.getTitle())){
                                 count++;
                             }
@@ -98,10 +93,10 @@ public class CartController {
                         }
 
                     }
-               
-                } 
+
+                }
             }
-            
+
         }
         return ResponseEntity.ok("Could not find book");
     }
@@ -109,7 +104,7 @@ public class CartController {
     /**
      * Removes book from the shopping cart
      * @param bookID
-     * @return RepsonseEntity
+     * @return ResponseEntity
      */
     @DeleteMapping("/removeFromCart")
     public ResponseEntity<String> removeFromCart(@RequestParam Long bookID, @RequestParam String username) {
@@ -118,9 +113,9 @@ public class CartController {
             if (user.getUsername().equals(username)) {
                 Cart userCart = user.getCart();
                 Optional<Book> bookToRemove = userCart.getBooks().stream()
-                    .filter(book -> book.getId().equals(bookID))
-                    .findFirst();
-                
+                        .filter(book -> book.getId().equals(bookID))
+                        .findFirst();
+
                 if (bookToRemove.isPresent()) {
                     userCart.removeBookFromCart(bookToRemove.get());
                     cartRepository.save(userCart);
@@ -131,5 +126,41 @@ public class CartController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found in the cart.");
     }
 
+    /**
+     * Checkout a book from the cart
+     * @param bookID The ID of the book to checkout
+     * @param username The username of the user checking out the book
+     * @return ResponseEntity
+     */
+    @PostMapping("/checkoutBook")
+    public ResponseEntity<String> checkoutBook(@RequestParam Long bookID, @RequestParam String username) {
+        Iterable<User> users = userRepository.findAll();
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                Cart userCart = user.getCart();
+                Optional<Book> bookToCheckout = userCart.getBooks().stream()
+                        .filter(book -> book.getId().equals(bookID))
+                        .findFirst();
 
+                if (bookToCheckout.isPresent()) {
+                    Book book = bookToCheckout.get();
+
+                    if (book.getQuantity() <= 0) {
+                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: Book is out of stock.");
+                    }
+
+                    book.setQuantity(book.getQuantity() - 1);
+                    bookInventory.save(book);
+
+                    userCart.removeBookFromCart(book);
+                    cartRepository.save(userCart);
+
+                    return ResponseEntity.ok("Book checked out successfully.");
+                } else {
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found in the cart.");
+                }
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: User not found.");
+    }
 }

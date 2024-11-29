@@ -17,7 +17,18 @@ $(document).ready(function() {
             url = "/admin/register";  
         }
 
-        
+        function wait(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function handleResponse(response) {
+            if (response){
+                success()
+                await wait(1000);
+                window.location.href = "/loginEntry"
+            }
+            else{fail()}
+        }
         $.ajax({
             url: url,
             type: "POST",
@@ -26,8 +37,8 @@ $(document).ready(function() {
                 password: password
             },
             success: function(response) {
-                console.log("Registration successful", response);  
-                window.location.href = "/loginEntry"
+                handleResponse(response);
+           
 
             },
             error: function(xhr, status, error) {
@@ -38,5 +49,25 @@ $(document).ready(function() {
             }
         });
     });
+
+    function success(){
+        $("#confirmation").html(
+        `Sign up Success!`
+    ).removeClass('fail').addClass('success');
+}
+
+    function fail(){
+        $("#confirmation").html(
+            `Whoops! Password must have atleast:<br>
+            8-10 characters<br>
+            1 UpperCase<br>
+            1 LowerCase<br>
+            1 Digit<br>
+            1 Special Character
+            `
+        ).removeClass('success').addClass('fail');
+
+    }
+ 
 
 });

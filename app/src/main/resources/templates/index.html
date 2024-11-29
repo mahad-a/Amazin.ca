@@ -19,19 +19,32 @@
                     <form id = "searchForm">
                         <label for="search"></label>
                         <input type="text" id = "search" placeholder = "search..." required>
-                        <button type = "submit" id = "searchButton">Search</button>
+                        <button type = "submit" id = "searchButton">
+                            <img src="/search-icon.png" alt="Search" style="width: 11px; height: 11px;">
+
+                        </button>
                     </form>
                 </div>
                 <h2 id = "login"><a href = "/loginEntry">Login</a></h2>
             </div>
             <div id = "subheaderbar">
+                
+                <label>Sort By</label>
+                <select id = "sort">
+                    <option value="title A-Z">Title A-Z</option>
+                    <option value="title Z-A">Title Z-A</option>
+                    <option value="authour A-Z">Authour A-Z</option>
+                    <option value="authour Z-A">Authour Z-A</option>
+                </select>
 
+                
+
+             
             </div>
 
             <ul id="bookList"></ul>
-            
 
-            
-
+            <div id="bookRecommendations"></div>
+        
         </body>
     </html>
