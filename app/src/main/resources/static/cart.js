@@ -2,10 +2,6 @@ $(document).ready(function () {
     console.log("cart.js loaded");
     const username = sessionStorage.getItem("username");
 
-    if (!username) {
-        $("#emptyCartMessage").text("Please log in to view your cart").show();
-        return;
-    }
 
     $.ajax({
         url: `/cart/getCart?username=${username}`,
@@ -14,9 +10,16 @@ $(document).ready(function () {
             $("#cartItems").empty();
 
             if (!response.books || response.books.length === 0) {
-                $("#emptyCartMessage").show();
+                
+                $("#cartItems").append(
+                    
+                    `<div id="emptyCartMessage">Nothing to see here...</div>`
+                )
+            
                 return;
             }
+
+            $("emptyCartMessage").remove();
 
             response.books.forEach((book) => {
                 const coverImage =
@@ -53,13 +56,18 @@ $(document).ready(function () {
                     type: "DELETE",
                     success: function (response) {
                         alert("Book removed from cart.");
+                        
 
                         // Remove the item from the DOM
                         bookItem.remove();
 
                         // Optionally, check if the cart is now empty and show a message
                         if ($("#cartItems").children().length === 0) {
-                            $("#emptyCartMessage").text("Your cart is now empty.").show();
+                            $("#cartItems").append(
+                    
+                                `<div id="emptyCartMessage">Nothing to see here...</div>`
+                            )
+                            
                         }
                     },
                     error: function (xhr, status, error) {
