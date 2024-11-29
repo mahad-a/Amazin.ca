@@ -1,64 +1,104 @@
 $(document).ready(function() {
-
     const username = sessionStorage.getItem("username");
-    if (username){
-        $("#login").remove();
-        $("#header").append(
-            `<a href="/cart/displayCart" id="cartButton"> 
-                <img src="/cart.png" alt="Shopping Cart" class="cart-icon">
-            </a>
-            
-            <a href="/settings/settingsEntry" id="settingsButton"> 
-                <img src="/Settings.png" alt="Settings" class="settings-icon">
-            </a>
-            
-            <button id="logoutButton"> 
-                <img src="/Logout.png" alt="Log Out" class="logout-icon">
-            </button>`
-        )
+    if (username) {
+      $("#login").remove();
+      $("#header").append(`
+        <a href="/cart/displayCart" id="cartButton">
+          <img src="/cart.png" alt="Shopping Cart" class="cart-icon">
+        </a>
+        <a href="/settings/settingsEntry" id="settingsButton">
+          <img src="/Settings.png" alt="Settings" class="settings-icon">
+        </a>
+        <button id="logoutButton">
+          <img src="/Logout.png" alt="Log Out" class="logout-icon">
+        </button>
+      `);
 
-        $("#subheaderbar").append(
-            `<a href = "/book/recommendations" id=bookRecommendations>Book recommendation</a>`
-        )
-        $(document).on("click", ".add-to-cart", function(){
+      function bookrecommendations(){
+      $.ajax({
+        url: `user/bookrecommendations?username=${sessionStorage.getItem("username")}`,
+        type: "GET",
+        success: function(response) {
+          if (response.length > 0) {
             
-            const username = sessionStorage.getItem("username");
-            if (!username) {
-                alert("Please log in to add items to cart");
-                return;
+            if ($("#recommendationsContainer").length == 0) {
+              $("#bookList").after(`
+                <div id="recommendationsContainer">
+                  <h2 id="recommendationTitle">Recommended For You</h2>
+                  <div id="bookRecommendations"></div>
+                </div>
+              `);
             }
-            const bookId = $(this).data('book-id');
-            $.ajax({
-                url: `/cart/addToCart?bookID=${bookId}&username=${username}`,
-                type: "POST",
-                success: function(response){
-                    alert(response);
-                },
-                error: function(xhr, status, error){
-                    console.log(error);
-                    alert("Failed to add book to cart");
-                }
+  
+            response.forEach(function(book) {
+              const coverImage = book.coverImage ? `data:image/jpeg;base64,${book.coverImage}` : '/images/default-cover.jpg';
+              const bookHtml = `
+                <div class="book-item">
+                  <div class="image-container">
+                    <img src="${coverImage}" alt="Cover of ${book.title}" class="book-cover">
+                  </div>
+                  <div class="book-details">
+                    <strong>Title:</strong> ${book.title} <br>
+                    <strong>Author:</strong> ${book.author} <br>
+                    <strong>ISBN:</strong> ${book.ISBNnum} <br>
+                    <strong>Quantity:</strong> ${book.quantity} <br>
+                  </div>
+                  <button class="add-to-cart" data-book-id="${book.id}">
+                    Add to Cart
+                  </button>
+                </div>
+              `;
+              $("#bookRecommendations").append(bookHtml);
             });
-        });
-
-        $(document).on("click", "#logoutButton", function(){
-
-            if(confirm("Are you sure you want to logout?")){
-                sessionStorage.removeItem("username");
-                $("#logoutButton").remove();
-                $("#settingsButton").remove();
-                $("#cartButton").remove();
-                $("#bookRecommendations").remove();
-                $("#header").append(
-                    `<h2 id = "login"><a href = "/loginEntry">Login</a></h2>`
-                )
-            }
-        });
-
-        
+          }
+        },
+        error: function(xhr, status, error) {
+          
+        }
+      });
     }
-    else{
-        sessionStorage.removeItem("username");
+
+    bookrecommendations();
+      $(document).on("click", ".add-to-cart", function() {
+        const username = sessionStorage.getItem("username");
+        if (!username) {
+          alert("Please log in to add items to cart");
+          return;
+        }
+        const bookId = $(this).data('book-id');
+        $.ajax({
+          url: `/cart/addToCart?bookID=${bookId}&username=${username}`,
+          type: "POST",
+          success: function(response) {
+            alert(response);
+            $(`#bookRecommendations .book-item`).each(function() {
+                const recommendedBookId = $(this).find('.add-to-cart').data('book-id');
+                $("#recommendationsContainer").remove();
+                if (recommendedBookId === bookId) {
+                  $(this).remove();
+                }
+              });
+            bookrecommendations();
+          },
+          error: function(xhr, status, error) {
+            console.log(error);
+            alert("Failed to add book to cart");
+          }
+        });
+      });
+  
+      $(document).on("click", "#logoutButton", function() {
+        if (confirm("Are you sure you want to logout?")) {
+          sessionStorage.removeItem("username");
+          $("#logoutButton").remove();
+          $("#settingsButton").remove();
+          $("#cartButton").remove();
+          $("#bookRecommendations").remove();
+          $("#header").append(`<h2 id="login"><a href="/loginEntry">Login</a></h2>`);
+        }
+      });
+    } else {
+      sessionStorage.removeItem("username");
     }
 
 

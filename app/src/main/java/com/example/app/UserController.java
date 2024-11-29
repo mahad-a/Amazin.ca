@@ -1,5 +1,10 @@
 package com.example.app;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +24,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BookInventory bookInventory;
 
     /**
      * Default constructor.
@@ -110,5 +118,26 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect username or password");
     }
 
+
+    @GetMapping("/bookrecommendations")
+    public ResponseEntity<List<Book>> recommendedBooks(@RequestParam String username) {
+        User user = userRepository.findByUsername(username);
+
+        List<Book> userBooks = user.getCart().getBooks();
+        Set<String> authors = new HashSet<>();
+        for (Book book : userBooks) {
+            authors.add(book.getAuthor());
+        }
+        System.out.println("authours" + authors);
+        List<Book> recommendedBooks = bookInventory.findBooksByAuthorIn(authors);
+        System.out.println("Recommended Books: " + recommendedBooks);
+        recommendedBooks.removeAll(userBooks);
+
+        
+
+        return ResponseEntity.ok(recommendedBooks);
+       
+        
+    }
 
 }
