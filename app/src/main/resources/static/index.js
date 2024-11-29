@@ -40,7 +40,7 @@ $(document).ready(function() {
                   <div class="book-details">
                     <strong>Title:</strong> ${book.title} <br>
                     <strong>Author:</strong> ${book.author} <br>
-                    <strong>ISBN:</strong> ${book.ISBNnum} <br>
+                    <strong>ISBN:</strong> ${book.isbn} <br>
                     <strong>Quantity:</strong> ${book.quantity} <br>
                   </div>
                   <button class="add-to-cart" data-book-id="${book.id}">
