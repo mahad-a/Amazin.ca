@@ -50,6 +50,7 @@ public class AdminController {
     
         if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
             System.out.println("Login Success!");
+            adminRepository.save(admin);
             return ResponseEntity.ok("Login successful!");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials.");
