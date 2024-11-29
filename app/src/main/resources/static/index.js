@@ -21,8 +21,8 @@ $(document).ready(function() {
         success: function(response) {
           if (response.length > 0) {
             
-            if ($("#bookRecommendations").length === 0) {
-              $("#bookRecommendations").append(`
+            if ($("#recommendationsContainer").length == 0) {
+              $("#bookList").after(`
                 <div id="recommendationsContainer">
                   <h2 id="recommendationTitle">Recommended For You</h2>
                   <div id="bookRecommendations"></div>
@@ -73,6 +73,7 @@ $(document).ready(function() {
             alert(response);
             $(`#bookRecommendations .book-item`).each(function() {
                 const recommendedBookId = $(this).find('.add-to-cart').data('book-id');
+                $("#recommendationsContainer").remove();
                 if (recommendedBookId === bookId) {
                   $(this).remove();
                 }

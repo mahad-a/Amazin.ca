@@ -86,6 +86,27 @@ public class AppApplication {
 			theCoworker.setQuantity(8);
 			bookInventory.save(theCoworker);
 
+			Book misery = new Book(02010, "Misery", "Stephen King");
+			misery.setCoverImageOnInstantiation(misery, "static/BookCovers/Misery.jpg");
+			misery.setQuantity(13);
+			bookInventory.save(misery);
+
+			Book theAliceNetwork = new Book(78451, "The Alice Network", "Kate Quinn");
+			theAliceNetwork.setCoverImageOnInstantiation(theAliceNetwork, "static/BookCovers/TheAliceNetwork.jpg");
+			theAliceNetwork.setQuantity(12);
+			bookInventory.save(theAliceNetwork);
+			
+			Book localWomanMissing = new Book(65432, "Local Woman Missing", "Mary Kubica");
+			localWomanMissing.setCoverImageOnInstantiation(localWomanMissing, "static/BookCovers/LocalWomanMissing.jpg");
+			localWomanMissing.setQuantity(5);
+			bookInventory.save(localWomanMissing);
+			
+			Book behindClosedDoors = new Book(98765, "Behind Closed Doors", "B.A. Paris");
+			behindClosedDoors.setCoverImageOnInstantiation(behindClosedDoors, "static/BookCovers/BehindClosedDoors.jpg");
+			behindClosedDoors.setQuantity(10);
+			bookInventory.save(behindClosedDoors);
+			
+
 		};
 	}
 
