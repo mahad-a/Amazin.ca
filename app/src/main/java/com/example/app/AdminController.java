@@ -64,10 +64,12 @@ public class AdminController {
     @PostMapping("/register")
     public ResponseEntity<Boolean> register(@RequestParam String username, @RequestParam String password){
         try{
-            username.strip();
+            //username.strip();
             
             Admin newAdmin = new Admin();
+
             if (newAdmin.setPassword(password)){
+                newAdmin.setUsername(username);
                 System.out.println(username + " registered!");
                 adminRepository.save(newAdmin);
                 return ResponseEntity.ok(true);
