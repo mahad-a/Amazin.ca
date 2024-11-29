@@ -40,8 +40,12 @@ java -jar app-0.0.1-SNAPSHOT.jar
 ```
 
 ### 3. Azure Cloud Deployment
-Access the live application at:
+Access the live application via Microsoft Azure at:
 [https://amazinonlinebookstore-fzhdb7arcjctabbq.canadaeast-01.azurewebsites.net](https://amazinonlinebookstore-fzhdb7arcjctabbq.canadaeast-01.azurewebsites.net)
+
+### 4. Google Cloud Deployment
+Access the live application via Google Cloud at:
+[https://amazin-sysc4806.nn.r.appspot.com/](https://amazin-sysc4806.nn.r.appspot.com/)
 
 ## Prerequisites
 - Java 21 or higher
