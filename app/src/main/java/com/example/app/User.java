@@ -38,7 +38,10 @@ public class User {
     /**
      * Default constructor.
      */
-    public User(){}
+    public User(){
+        this.cart = new Cart();  
+        this.cart.setUser(this);
+    }
 
 
     
