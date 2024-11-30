@@ -95,6 +95,7 @@ $(document).ready(function() {
           $("#cartButton").remove();
           $("#bookRecommendations").remove();
           $("#header").append(`<h2 id="login"><a href="/loginEntry">Login</a></h2>`);
+          $("#recommendationsContainer").remove();
         }
       });
     } else {
