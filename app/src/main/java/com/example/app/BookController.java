@@ -68,6 +68,8 @@ public class BookController {
                 System.out.println(book.getISBN());
                 System.out.println(book.getAuthor());
                 System.out.println(book.getTitle());
+                System.out.println(book.getQuantity());
+                System.out.println(book.getPrice());
                 System.out.println(book.getCoverImage());
                 System.out.println("Book id = " + book.getId());
             }
@@ -92,6 +94,7 @@ public class BookController {
         @RequestParam String title,
         @RequestParam String author,
         @RequestParam int quantity,
+        @RequestParam double price,
         @RequestParam("coverImage") MultipartFile coverImage
     ) {
         try {
@@ -99,6 +102,7 @@ public class BookController {
             Book book = new Book(ISBNnum, title, author);
             book.setQuantity(quantity);
             book.setCoverImage(coverImage.getBytes()); 
+            book.setPrice(price);
             Book savedBook = bookInventory.save(book);
             System.out.println("Cover image size: " + coverImage.getSize() + " bytes");
             return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
@@ -140,15 +144,18 @@ public class BookController {
         @RequestParam("title") String title,
         @RequestParam("author") String author,
         @RequestParam("quantity") int quantity,
+        @RequestParam("price") double price,
         @RequestParam(value = "coverImage", required = false) MultipartFile coverImage
     ) {
         Optional<Book> books = bookInventory.findById(id);
         if (books.isPresent()){
             Book book = books.get();
+            bookInventory.delete(book);
             book.setISBN(isbn);
             book.setAuthor(author);
             book.setTitle(title);
             book.setQuantity(quantity);
+            book.setPrice(price);
             try {
                 book.setCoverImage(coverImage.getBytes());
 
@@ -156,7 +163,7 @@ public class BookController {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
+            
             bookInventory.save(book);
 
             return ResponseEntity.ok("Book Updated");

@@ -22,6 +22,7 @@ public class Book {
     String author;
     int ISBNnum;
     int quantity;
+    double price;
     @Lob
     byte [] coverImage;
 
@@ -143,6 +144,13 @@ public class Book {
 
     }
 
+    public void setPrice(double price){
+        this.price = price;
+    }
+
+    public double getPrice(){
+        return this.price;
+    }
 
     public void setCoverImageOnInstantiation(Book book, String bookCoverPath){
         try {
