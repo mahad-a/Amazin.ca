@@ -2,7 +2,6 @@ package com.example.app;
 
 import java.io.File;
 
-import org.hibernate.annotations.DialectOverride.Where;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -109,7 +108,7 @@ public class AppApplication {
 			theCoworker.setPrice(10.99);
 			bookInventory.save(theCoworker);
 
-			Book misery = new Book(02010, "Misery", "Stephen King");
+			Book misery = new Book(62010, "Misery", "Stephen King");
 			misery.setCoverImageOnInstantiation(misery, "static/BookCovers/Misery.jpg");
 			misery.setQuantity(13);
 			misery.setPrice(13.99);
