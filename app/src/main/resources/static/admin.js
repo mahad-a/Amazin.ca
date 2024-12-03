@@ -274,7 +274,9 @@ $(document).ready(function() {
         console.log(sortOption);
 
         switch(sortOption){
-
+            case "clear filters":
+                sortFunction(sortOption);
+                break;
             case "title A-Z":
                 sortFunction(sortOption);
                 break;
@@ -287,7 +289,12 @@ $(document).ready(function() {
             case "authour Z-A":
                 sortFunction(sortOption);
                 break;
-            
+            case "price high to low":
+                sortFunction(sortOption);
+                break;
+            case "price low to high":
+                sortFunction(sortOption);
+                break;
         }
 
 
