@@ -41,7 +41,8 @@ $(document).ready(function() {
                     <strong>Title:</strong> ${book.title} <br>
                     <strong>Author:</strong> ${book.author} <br>
                     <strong>ISBN:</strong> ${book.isbn} <br>
-                    <strong>Quantity:</strong> ${book.quantity} <br>
+                    <strong>Quantity:</strong> ${book.quantity}<br>
+                    <strong>Price:</strong> ${book.price}
                   </div>
                   <button class="add-to-cart" data-book-id="${book.id}">
                     Add to Cart
@@ -117,7 +118,8 @@ $(document).ready(function() {
                     <div class="book-details">
                         <strong>ISBN:</strong> ${book.isbn} <br>
                         <strong>Title:</strong> ${book.title} <br>
-                        <strong>Author:</strong> ${book.author}
+                        <strong>Author:</strong> ${book.author}<br>
+                        <strong>Price:</strong> ${book.price}
                     </div>
                     <button 
                         class="add-to-cart" 

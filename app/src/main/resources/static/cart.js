@@ -3,6 +3,15 @@ $(document).ready(function () {
     const username = sessionStorage.getItem("username");
 
 
+    function updateSum(sum){
+        $("#subTotalContainer").empty();
+        $("#subTotalContainer").append(
+            `<label id="subTotalText">Total: </label>
+             <label id="amount">$${sum.toFixed(2)}</label>
+            
+            `
+        )
+    }
     $.ajax({
         url: `/cart/getCart?username=${username}`,
         type: "GET",
@@ -12,16 +21,22 @@ $(document).ready(function () {
             if (!response.books || response.books.length === 0) {
                 
                 $("#cartItems").append(
-                    
                     `<div id="emptyCartMessage">Nothing to see here...</div>`
                 )
+                updateSum(0);
             
                 return;
             }
-
-            $("emptyCartMessage").remove();
+            let sum = 0
+            $("#emptyCartMessage").remove();
 
             response.books.forEach((book) => {
+
+                
+                sum+=book.price;
+
+                updateSum(sum);
+
                 const coverImage =
                     book.coverImage && book.coverImage.trim()
                         ? `data:image/jpeg;base64,${book.coverImage}`
@@ -38,7 +53,8 @@ $(document).ready(function () {
                             <strong>ISBN:</strong> ${book.isbn} <br>
                             <strong>Title:</strong> ${book.title} <br>
                             <strong>Author:</strong> ${book.author} <br>
-                            <strong>Quantity: </strong> ${book.quantity}
+                            <strong>Quantity: </strong> ${book.quantity}<br>
+                            <strong>Price:</strong> ${book.price}
                         </div>
                         <button class="removeFromCartButton" data-book-id="${book.id}">Remove item</button>
                         <button class="checkoutFromCartButton" data-book-id="${book.id}">Checkout</button>
@@ -56,9 +72,24 @@ $(document).ready(function () {
                     type: "DELETE",
                     success: function (response) {
                         alert("Book removed from cart.");
+                        // Remove the item from the DOM
                         
 
-                        // Remove the item from the DOM
+                        let price = response;
+                        console.log("current price" + price);
+
+                        let currAmount = parseFloat($("#amount").text().replace("$", "").trim());
+                        console.log("current amount" + currAmount);
+
+                        let sum = currAmount - price;
+                        console.log("current sum" + sum);
+
+                        if (price < 0){
+                            sum = 0;
+                        }
+
+                        updateSum(sum);
+
                         bookItem.remove();
 
                         // Optionally, check if the cart is now empty and show a message
@@ -108,4 +139,7 @@ $(document).ready(function () {
             console.error("Failed to retrieve cart:", error);
         }
     });
+
+
+    
 });

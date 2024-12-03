@@ -107,7 +107,7 @@ public class CartController {
      * @return ResponseEntity
      */
     @DeleteMapping("/removeFromCart")
-    public ResponseEntity<String> removeFromCart(@RequestParam Long bookID, @RequestParam String username) {
+    public ResponseEntity<Double> removeFromCart(@RequestParam Long bookID, @RequestParam String username) {
         Iterable<User> users = userRepository.findAll();
         for (User user : users) {
             if (user.getUsername().equals(username)) {
@@ -119,11 +119,11 @@ public class CartController {
                 if (bookToRemove.isPresent()) {
                     userCart.removeBookFromCart(bookToRemove.get());
                     cartRepository.save(userCart);
-                    return ResponseEntity.ok("Book removed from cart successfully.");
+                    return ResponseEntity.ok(bookToRemove.get().getPrice());
                 }
             }
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found in the cart.");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     /**
