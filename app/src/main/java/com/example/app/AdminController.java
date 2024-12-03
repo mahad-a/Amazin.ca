@@ -30,7 +30,6 @@ public class AdminController {
      * Login Page for Admin
      * @return loginAdmin.html
      */
-
     @GetMapping("/loginPage")
     public String loginPage() {
         return "loginAdmin";
@@ -38,9 +37,9 @@ public class AdminController {
     
     /**
      * Admin Login Verification
-     * @param username
-     * @param password
-     * @return
+     * @param username admin username
+     * @param password admin password
+     * @return result of verification
      */
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
@@ -57,15 +56,13 @@ public class AdminController {
     }
     /**
      * Admin Registration 
-     * @param username
-     * @param password
-     * @return
+     * @param username admins username
+     * @param password admins password
+     * @return if signup was successful
      */
     @PostMapping("/register")
     public ResponseEntity<Boolean> register(@RequestParam String username, @RequestParam String password){
         try{
-            //username.strip();
-            
             Admin newAdmin = new Admin();
 
             if (newAdmin.setPassword(password)){

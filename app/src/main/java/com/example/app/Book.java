@@ -134,24 +134,45 @@ public class Book {
         this.coverImage = coverImage;
     }
 
+    /**
+     * Sets the quantity of the book
+     * @param quantity quantity of book
+     */
     public void setQuantity(int quantity){
         this.quantity = quantity;
 
     }
 
+    /**
+     * Gets the quantity of the book
+     * @return the quantity of the book
+     */
     public int getQuantity(){
         return this.quantity;
 
     }
 
+    /**
+     * Sets the price of the book
+     * @param price the price to set
+     */
     public void setPrice(double price){
         this.price = price;
     }
 
+    /**
+     * Gets the price of the book
+     * @return the price of book
+     */
     public double getPrice(){
         return this.price;
     }
 
+    /**
+     * Ensures book cover is set
+     * @param book book to have cover set on
+     * @param bookCoverPath path of the book cover image
+     */
     public void setCoverImageOnInstantiation(Book book, String bookCoverPath){
         try {
             byte[] coverImage = getClass().getClassLoader().getResourceAsStream(bookCoverPath).readAllBytes();

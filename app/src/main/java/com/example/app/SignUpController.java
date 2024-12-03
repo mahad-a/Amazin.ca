@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/signup")
 public class SignUpController {
 
-
-    
-    /** 
-     * @return String
+    /**
+     * Direct to sign up page
+     * @return sign up html
      */
     @GetMapping("/sign-up")
     public String signUpPage(){

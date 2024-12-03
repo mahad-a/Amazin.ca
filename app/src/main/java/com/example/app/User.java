@@ -27,8 +27,6 @@ public class User {
 
     private String username;
     private String password;
-
-    
     
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
@@ -146,11 +144,19 @@ public class User {
        
     }
 
+    /**
+     * Sets cart to user
+     * @param cart cart to be set
+     */
     public void setCart(Cart cart){
         this.cart = cart;
 
     }
 
+    /**
+     * Gets user's cart
+     * @return user's cart
+     */
     public Cart getCart(){
         return this.cart;
     }

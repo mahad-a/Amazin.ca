@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -13,8 +14,6 @@ import java.util.Optional;
 public class CartController {
     @Autowired
     private BookInventory bookInventory;
-    @Autowired
-    private Cart cart;
     @Autowired
     private CartRepository cartRepository;
     @Autowired
@@ -55,8 +54,8 @@ public class CartController {
 
     /**
      * Adds a book to the shopping cart
-     * @param bookID
-     * @return RepsonseEntity
+     * @param bookID id of book
+     * @return ResponseEntity
      */
     @PostMapping("/addToCart")
     public ResponseEntity<String> addToCart(@RequestParam Long bookID, @RequestParam String username) {
@@ -66,7 +65,7 @@ public class CartController {
         Book foundBook;
 
         for(Book book : books){
-            if (book.id == bookID){
+            if (Objects.equals(book.id, bookID)){
                 foundBook = book;
                 Iterable<User> users = userRepository.findAll();
 
@@ -103,7 +102,7 @@ public class CartController {
 
     /**
      * Removes book from the shopping cart
-     * @param bookID
+     * @param bookID id of book
      * @return ResponseEntity
      */
     @DeleteMapping("/removeFromCart")
@@ -128,7 +127,7 @@ public class CartController {
 
     /**
      * Checkout a book from the cart
-     * @param bookID The ID of the book to checkout
+     * @param bookID The ID of the book to check out
      * @param username The username of the user checking out the book
      * @return ResponseEntity
      */

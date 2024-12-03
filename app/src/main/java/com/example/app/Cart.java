@@ -23,7 +23,7 @@ public class Cart {
     @OneToOne(mappedBy = "cart")
     private User user;
 
-    Cart(){
+    public Cart(){
 
     }
     /**
@@ -87,9 +87,18 @@ public class Cart {
         cartSize--;
     }
 
+    /**
+     * Sets user to the cart
+     * @param user user to be set
+     */
     public void setUser(User user){
         this.user = user;
     }
+
+    /**
+     * Gets user who owns cart
+     * @return user that owns cart
+     */
     public User getUser(){
         return this.user;
     }

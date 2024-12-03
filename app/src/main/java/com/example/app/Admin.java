@@ -22,8 +22,8 @@ public class Admin {
     }
     /**
      * Param Constructor 
-     * @param username
-     * @param password
+     * @param username admins username
+     * @param password admins password
      */
     public Admin(String username, String password){
         this.username = username;
@@ -33,12 +33,18 @@ public class Admin {
     
     
     /** 
-     * return Adming password
-     * @return String
+     * return Admin password
+     * @return password of admin
      */
     public String getPassword() {
         return this.password;
     }
+
+    /**
+     * Validate the signup with password checker
+     * @param password inputted password
+     * @return if password is valid or not
+     */
     public boolean registrationValidation(String password) {
         // Check if username or password is null or empty
         if (
@@ -63,7 +69,7 @@ public class Admin {
     
     /** 
      * set Admin Password
-     * @param password
+     * @param password new password for admin
      */
     public boolean setPassword(String password) {
         if (registrationValidation(password)){
@@ -79,20 +85,20 @@ public class Admin {
     
     /** 
      * return Admin user
-     * @return String
+     * @return username of admin
      */
     public String getUsername() {
         return this.username;
     }
     /**
      * set Admin user
-     * @param username
+     * @param username new username for admin
      */
     public void setUsername(String username) {
         this.username = username;
     }
     /**
-     * Admin Id
+     * Admin ID
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -100,14 +106,14 @@ public class Admin {
 
     /**
      * return Admin id
-     * @return
+     * @return id of admin
      */
     public Long getAdminId() {
         return this.adminId;
     }
     /**
      * set Admin id
-     * @param adminId
+     * @param adminId new id for admin
      */
     public void setAdminId(Long adminId) {
         this.adminId = adminId;

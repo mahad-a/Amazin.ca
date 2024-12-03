@@ -15,22 +15,30 @@ public class AppApplication {
 
 	
 	/** 
-	 * @param args
+	 * @param args main
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(AppApplication.class, args);
 	}
 
+	/**
+	 * Testing account for user
+	 * @param userRepository database to save to
+	 * @return saved user
+	 */
 	@Bean
 	CommandLineRunner userCommandLineRunner(UserRepository userRepository){
 		return args->{
-
 			User user = new User("user", "123ABC!");
 			userRepository.save(user);
-
 		};
 	}
 
+	/**
+	 * Testing account for admin
+	 * @param adminRepository database to save to
+	 * @return saved admin
+	 */
 	@Bean
 	CommandLineRunner adminCommandLineRunner(AdminRepository adminRepository){
 		return args->{
@@ -38,6 +46,12 @@ public class AppApplication {
 			adminRepository.save(admin);
 		};
 	}
+
+	/**
+	 * Books to be saved in database
+	 * @param bookInventory database to save to
+	 * @return saved books
+	 */
 	@Bean
 	CommandLineRunner bookCommandLineRunner(BookInventory bookInventory){
 		return args ->{
@@ -124,6 +138,9 @@ public class AppApplication {
 		};
 	}
 
+	/**
+	 * Clean up database
+	 */
 	@PreDestroy
     public void onExit() {
         File dbFile = new File("./data/mydb.mv.db");

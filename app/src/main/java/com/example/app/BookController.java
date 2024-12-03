@@ -1,7 +1,6 @@
 package com.example.app;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +10,6 @@ import java.util.stream.StreamSupport;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,8 +43,8 @@ public class BookController {
     }
     /**
      * Retreives a specific book from the repository based on the books id
-     * @param id
-     * @return
+     * @param id the book's id
+     * @return if book is found
      */
     @GetMapping("/get")
     public ResponseEntity<Optional<Book>> getBook(@RequestParam Long id) {
@@ -55,7 +53,7 @@ public class BookController {
     }
     /**
      * Retreives all books from the book repository
-     * @return
+     * @return all books in repository
      */
 
     @GetMapping("/getAll")
@@ -82,11 +80,11 @@ public class BookController {
     }
     /**
      * Add's a Book to the book repository with the below parameters
-     * @param ISBNnum
-     * @param title
-     * @param author
-     * @param coverImage
-     * @return
+     * @param ISBNnum ISBN of book
+     * @param title title of book
+     * @param author author of book
+     * @param coverImage the cover image of book
+     * @return newly created book
      */
     @PostMapping("/add")
     public ResponseEntity<Book> addBook(
@@ -112,8 +110,8 @@ public class BookController {
     }
     /**
      * Delete's a specific book based on it's id
-     * @param id
-     * @return
+     * @param id id of book to delete
+     * @return if book was deleted
      */
 
     @DeleteMapping("/del")
@@ -129,14 +127,13 @@ public class BookController {
     }
     /**
      * Updates a Book within the book repository (didn't use PUT because complication)
-     * @param id
-     * @param isbn
-     * @param title
-     * @param author
-     * @param coverImage
+     * @param id id of book
+     * @param isbn ISBN of book
+     * @param title title of book
+     * @param author author of book
+     * @param coverImage cover image of book
      * @return
      */
-
     @PostMapping("/update")
     public ResponseEntity<String> updateBook(
         @RequestParam("id") Long id,
@@ -178,8 +175,8 @@ public class BookController {
 
     /**
      * Search's for a book based on a query (irrespective to what parameter of the book it is)
-     * @param query
-     * @return
+     * @param query inputted query by user
+     * @return result of the search
      */
     @GetMapping("/search")
     public ResponseEntity<List<Book>> searchBooks(@RequestParam String query) {
@@ -196,7 +193,12 @@ public class BookController {
         }
     }
 
-  
+
+    /**
+     * Filter book by various fields
+     * @param sortBy selected sorting option
+     * @return order of books sorted in desired way
+     */
     @GetMapping("/sort")
     public ResponseEntity<List<Book>> sort(@RequestParam String sortBy) {
         System.out.println("This is the received request: " + sortBy);
