@@ -16,8 +16,8 @@ body {
 }
 
 #logo {
-    width: 160px;
-    height: 90px;
+    width: 180px;
+    height: 110px;
   }
 
 #adminAddPage {
@@ -52,33 +52,6 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
     transform: translateY(-1px);
 }
-
-
-
-#home {
-    margin-left: auto;
-}
-
-#home a {
-    font-family: 'Arial Black', Arial, sans-serif;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 10px 15px;
-    transition: all 0.3s ease;
-    display: inline-block;
-    border-radius: 4px;
-}
-
-#home a:visited {
-    color: #ffffff;
-}
-
-#home a:hover {
-    color: #d5d9d9;
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-1px);
-}
-
 
 #subheaderbar {
     background-color: #3b9b99; /* Darker gray Amazon subheader */
