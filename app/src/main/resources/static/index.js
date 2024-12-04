@@ -1,5 +1,6 @@
 $(document).ready(function() {
     const username = sessionStorage.getItem("username");
+    console.log(username);
     if (username) {
       $("#login").remove();
       $("#header").append(`
