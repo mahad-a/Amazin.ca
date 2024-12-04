@@ -1,109 +1,142 @@
+
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #f3f3f3;
+  margin: 0;
+  font-family: 'Amazon Ember', Arial, sans-serif; /* Use Amazon-like font */
+  background-color: #f6f6f6; /* Lighter background for a cleaner feel */
+}
+
+
+#settings {
+  margin: 0;
+  width: 200px;
+  height: 110px;
 }
 
 /* Header Styles */
 #header {
-    background-color: #232f3e;
-    color: white;
-    padding: 10px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #232f3e;
+  color: white;
+  padding: 10px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0; /* Slight border for structure */
 }
 
-/* Header Button Styles */
 #header a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
 }
 
-#settings {
-    margin: 0;
-    width: 180px;
-    height: 110px;
-}
-
-#home {
-    margin: 0;
-}
-
-
+/* Settings Container */
 #settings-container {
-    display: flex;
-    height: 100vh; /* Ensure the container takes full height */
-  }
-  
-  #settings-menu {
-    width: 250px;
-    padding: 20px;
-    border-right: 1px solid #e0e0e0;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  #settings-menu button {
-    width: 100%;
-    padding: 10px;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  #settings-menu button:hover {
-    background-color: #f3a847;
-  }
-  
-  #actions-section {
-    flex-grow: 1;
-    padding: 80px 20px 20px;
-    background-color: #f3f3f3;
-    overflow-y: auto;
-  }
-  
-  /* Existing styles for forms and other elements */
-  .settings-section {
-    display: none; /* Initially hide all sections */
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .settings-section h3 {
-    margin-top: 0;
-  }
-  
-  #change-username-form, #change-password-form, #delete-account-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .text-entry {
-    padding: 10px;
-    border: 1px solid Black;
-    border-radius: 5px;
-    width: 500px;
-  }
-  
-  .submit-button {
-    padding: 10px;
-    background-color: #febd69; 
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100px;
-    
-  }
-  
-  .submit-button:hover {
-    background-color: #f3a847; 
-  }
+  display: flex;
+  height: 100vh;
+  margin-top: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+/* Settings Menu */
+#settings-menu {
+  width: 250px;
+  padding: 20px;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #f6f6f6;
+  font-family: 'Amazon Ember', Arial, sans-serif; /* Use Amazon-like font */
+}
+
+#settings-menu button {
+  width: 100%;
+  padding: 15px 20px;
+  color: #111;
+  border: none;
+  background: none; /* Remove background color */
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  border-top: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+#settings-menu button:hover {
+  background-color: #f3a847; /* Amazon's signature orange on hover */
+  color: white;
+}
+
+/* Actions Section */
+#actions-section {
+  flex-grow: 1;
+  padding: 40px 20px;
+  background-color: #f6f6f6;
+  overflow-y: auto;
+}
+
+/* Forms Styling */
+.settings-section {
+  display: none;
+  padding: 25px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.settings-section h3 {
+  margin: 0 0 20px;
+  color: #111;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Modernized Text Fields */
+.text-entry {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  width: 400px;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #333;
+  background-color: #fafafa;
+  transition: border-color 0.3s ease;
+}
+
+.text-entry:focus {
+  border-color: #f3a847; /* Amazon orange */
+  outline: none;
+  background-color: #ffffff;
+}
+
+/* Modernized Submit Button */
+.submit-button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background: none;
+  border: 1px solid #f3a847;
+  color: #f3a847;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: fit-content;
+}
+
+.submit-button:hover {
+  background-color: #f3a847;
+  color: white;
+}
+
+#delete{
+  border: 1px solid rgb(253, 0, 0);
+  color: red;
+}
+
+#delete:hover{
+  background-color: rgb(240, 0, 0);
+  color: white;
+}

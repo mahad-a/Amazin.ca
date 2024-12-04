@@ -52,7 +52,7 @@ $(document).ready(function() {
 
     // update page with form to delete account
     $("#delete-account").click(function () {
-        settingsActions.empty(); // ensure page is empty and clear
+        settingsActions.empty(); 
 
         const deleteAccountForm = `
             <div id="delete-account-section" class="settings-section">
@@ -64,7 +64,7 @@ $(document).ready(function() {
                     <label for="password">Password:</label>
                     <input type="password" id="password" class="text-entry" name="password" required>
                     <br>
-                    <button type="submit" class="submit-button">Delete Account</button>
+                    <button type="submit" class="submit-button" id="delete">Delete Account</button>
                 </form>
             </div>
         `;
