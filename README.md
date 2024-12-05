@@ -66,7 +66,6 @@ Access the live application via Google Cloud at:
 - Maven
 - Azure Cloud Services
 
-
 ## Support
 For any issues or questions, please open an issue in the repository or contact the development team.
 - [zarifkhan@cmail.carleton.ca](mailto:zarifkhan@cmail.carleton.ca)
@@ -74,13 +73,6 @@ For any issues or questions, please open an issue in the repository or contact t
 - [mahadahmed3@cmail.carleton.ca](mailto:mahadahmed3@cmail.carleton.ca)
 - [firaselezzi@cmail.carleton.ca](mailto:firaselezzi@cmail.carleton.ca)
 - [ilyaashussein@cmail.carleton.ca](mailto:ilyaashussein@cmail.carleton.ca)
-
-
-## TODO:
-- Security
-- Payment Methods (ex. Credit cards)
-- Filter/Sort
-- Book Recommedations
 
 ## License
 Copyright 2024 Amazin.ca
