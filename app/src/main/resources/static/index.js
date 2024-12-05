@@ -1,5 +1,6 @@
 $(document).ready(function() {
     const username = sessionStorage.getItem("username");
+    console.log(username);
     if (username) {
       $("#login").remove();
       $("#header").append(`
@@ -95,7 +96,7 @@ $(document).ready(function() {
           $("#settingsButton").remove();
           $("#cartButton").remove();
           $("#bookRecommendations").remove();
-          $("#header").append(`<h2 id="login"><a href="/loginEntry">Login</a></h2>`);
+          $("#header").append(`<h2 id = "login"><a href = "/loginEntry"><img src="/Login.png" class = "logout-icon"></a></h2>`);
           $("#recommendationsContainer").remove();
         }
       });
@@ -119,6 +120,7 @@ $(document).ready(function() {
                         <strong>ISBN:</strong> ${book.isbn} <br>
                         <strong>Title:</strong> ${book.title} <br>
                         <strong>Author:</strong> ${book.author}<br>
+                        <strong>Quantity:</strong> ${book.quantity}<br>
                         <strong>Price:</strong> ${book.price}
                     </div>
                     <button 
