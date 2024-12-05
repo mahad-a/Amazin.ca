@@ -96,7 +96,7 @@ $(document).ready(function() {
           $("#settingsButton").remove();
           $("#cartButton").remove();
           $("#bookRecommendations").remove();
-          $("#header").append(`<h2 id="login"><a href="/loginEntry">Login</a></h2>`);
+          $("#header").append(`<h2 id = "login"><a href = "/loginEntry"><img src="/Login.png" class = "logout-icon"></a></h2>`);
           $("#recommendationsContainer").remove();
         }
       });
