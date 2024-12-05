@@ -120,6 +120,7 @@ $(document).ready(function() {
                         <strong>ISBN:</strong> ${book.isbn} <br>
                         <strong>Title:</strong> ${book.title} <br>
                         <strong>Author:</strong> ${book.author}<br>
+                        <strong>Quantity:</strong> ${book.quantity}<br>
                         <strong>Price:</strong> ${book.price}
                     </div>
                     <button 
