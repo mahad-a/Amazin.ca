@@ -113,6 +113,25 @@ $(document).ready(function () {
                 const bookId = $(this).data("book-id");
                 const bookItem = $(this).closest(".book-item"); // Cache the book item element
 
+                function isValidCreditCardInfo(cardNumber, expiryDate, cvv) {
+                    const cardNumberRegex = /^\d{16,19}$/;
+                    const expiryDateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+                    const cvvRegex = /^\d{3}$/;
+                    return (
+                        cardNumberRegex.test(cardNumber) &&
+                        expiryDateRegex.test(expiryDate) &&
+                        cvvRegex.test(cvv)
+                    );
+                }
+
+                const cardNumber = prompt("Enter your credit card number (16-19 digits):");
+                const expiryDate = prompt("Enter the expiry date (MM/YY):");
+                const cvv = prompt("Enter your CVV (3 digits):");
+
+                if (!isValidCreditCardInfo(cardNumber, expiryDate, cvv)) {
+                    alert("Invalid credit card details. Please try again.");
+                    return;
+                }
                 $.ajax({
                     url: `/cart/checkoutBook?bookID=${bookId}&username=${username}`,
                     type: "POST", // Assuming backend uses POST for checkoutBook method
@@ -141,5 +160,6 @@ $(document).ready(function () {
     });
 
 
-    
+
+
 });
