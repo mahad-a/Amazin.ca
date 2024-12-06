@@ -165,7 +165,7 @@ public class BookControllerTest {
                 new Book(123, "Test Book", "Author"),
                 new Book(456, "Book", "Test Author")
         );
-        when(bookInventory.findByTitleContainingOrAuthorContainingIgnoreCase(query, query))
+        when(bookInventory.findByTitleContainingOrAuthorContainingIgnoreCase(query))
                 .thenReturn(books);
 
         ResponseEntity<List<Book>> response = bookController.searchBooks(query);

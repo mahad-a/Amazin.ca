@@ -182,13 +182,12 @@ public class BookController {
     public ResponseEntity<List<Book>> searchBooks(@RequestParam String query) {
         List<Book> validBooks;
         try {
-            
             int isbnnum = Integer.parseInt(query);
             validBooks = bookInventory.findByISBNnum(isbnnum);
             return ResponseEntity.ok(validBooks);
         } catch (NumberFormatException e) {
             
-            validBooks = bookInventory.findByTitleContainingOrAuthorContainingIgnoreCase(query, query);
+            validBooks = bookInventory.findByTitleContainingOrAuthorContainingIgnoreCase(query);
             return ResponseEntity.ok(validBooks);
         }
     }
