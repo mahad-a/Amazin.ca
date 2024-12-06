@@ -6,8 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("/cart")
@@ -158,6 +157,45 @@ public class CartController {
                 } else {
                     return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found in the cart.");
                 }
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: User not found.");
+    }
+
+    @PostMapping("/checkoutAll")
+    public ResponseEntity<String> checkoutAllBooks(@RequestParam String username) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: User not found.");
+        }
+        Cart userCart = user.getCart();
+        if (userCart == null || userCart.getBooks() == null || userCart.getBooks().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: Cart is empty or invalid.");
+        }
+
+        List<Book> booksInCart = new ArrayList<>(userCart.getBooks());
+        for (Book book : booksInCart) {
+            if (book.getQuantity() <= 0) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: Book '" + book.getTitle() + "' is out of stock.");
+            }
+            book.setQuantity(book.getQuantity() - 1);
+            bookInventory.save(book);
+            userCart.removeBookFromCart(book);
+        }
+        cartRepository.save(userCart);
+        return ResponseEntity.ok("All books in cart checked out successfully.");
+    }
+
+
+    @PostMapping("clearCart")
+    public ResponseEntity<String> clearCart(@RequestParam String username){
+        Iterable<User> users = userRepository.findAll();
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                Cart userCart = user.getCart();
+                userCart.getBooks().clear();
+                cartRepository.save(userCart);
+                return ResponseEntity.ok("Cart has been cleared successfully.");
             }
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: User not found.");

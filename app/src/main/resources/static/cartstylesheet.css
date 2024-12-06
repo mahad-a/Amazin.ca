@@ -94,14 +94,13 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
   border-radius: 4px;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: brightness(0) invert(1);
-  margin-top: 4px;
+  margin-top: 8px;
+  margin-right: 8px;
 }
 
 #checkoutAll:hover {
@@ -110,9 +109,34 @@ body {
 }
 
 .checkoutAll-icon {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+#clearCart {
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  margin-right: 8px;
+}
+
+#clearCart:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.clearCart-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
   filter: brightness(0) invert(1);
 }
 
