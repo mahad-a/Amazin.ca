@@ -15,6 +15,7 @@ public interface BookInventory extends CrudRepository<Book, Long> {
             "OR LOWER(b.author) LIKE LOWER(CONCAT('%', :query, '%'))")
     List<Book> findByTitleContainingOrAuthorContainingIgnoreCase(@Param("query") String query);
 
-    List<Book> findByISBNnum(int isbn);
+    @Query("SELECT b FROM Book b WHERE CAST(b.ISBNnum AS string) LIKE CONCAT('%', :isbn, '%')")
+    List<Book> findByISBNnumContaining(@Param("isbn") String isbn);
     List<Book> findBooksByAuthorIn(Set<String> authors);
 }

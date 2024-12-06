@@ -145,11 +145,13 @@ public class BookControllerTest {
 //    }
 
     // Test for the searchBooks method (by ISBN)
+
+
     @Test
     public void testSearchBooks_ByISBN() {
         String query = "123";
         List<Book> books = Arrays.asList(new Book(123, "Test Book", "Test Author"));
-        when(bookInventory.findByISBNnum(123)).thenReturn(books);
+        when(bookInventory.findByISBNnumContaining("123")).thenReturn(books);
 
         ResponseEntity<List<Book>> response = bookController.searchBooks(query);
 
