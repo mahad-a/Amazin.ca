@@ -180,17 +180,15 @@ public class BookController {
      */
     @GetMapping("/search")
     public ResponseEntity<List<Book>> searchBooks(@RequestParam String query) {
-        List<Book> validBooks;
-        try {
-            
-            int isbnnum = Integer.parseInt(query);
-            validBooks = bookInventory.findByISBNnum(isbnnum);
-            return ResponseEntity.ok(validBooks);
-        } catch (NumberFormatException e) {
-            
-            validBooks = bookInventory.findByTitleContainingOrAuthorContainingIgnoreCase(query, query);
-            return ResponseEntity.ok(validBooks);
+        // search by isbn first
+        List<Book> validBooks = bookInventory.findByISBNnumContaining(query);
+
+        // if no ibsn then lets search by title or author
+        if (validBooks.isEmpty()) {
+            validBooks = bookInventory.findByTitleContainingOrAuthorContainingIgnoreCase(query);
         }
+
+        return ResponseEntity.ok(validBooks);
     }
 
 
