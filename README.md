@@ -16,7 +16,7 @@ Amazin.ca is an online bookstore platform that allows users to browse, search, a
 ![ER Diagram](docs/BookStoreER_v2.png)
 
 ### Entity Relationship Map
-![ER Map](docs/BookStoreER-MAP_v2.png)
+![ER Map](docs/BookStoreER-MAP.png)
 
 ## Running the Application
 
